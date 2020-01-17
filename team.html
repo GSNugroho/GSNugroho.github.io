@@ -84,9 +84,9 @@
 
 </div>
 
-<div class="fixed-action-btn">
-    <a class="btn-floating btn-large red" id="save">
-    <i class="large material-icons">save</i>
+<div id="save" class="fixed-action-btn">
+    <a class="btn-floating btn-large red">
+        <i class="large material-icons">save</i>
     </a>
 </div>
 
@@ -119,11 +119,13 @@
         var fav = false
         cek(idParam).then((msg) => {
         console.log("statusData: resolve = " + msg)
+        document.getElementById("save").innerHTML = '<a class="btn-floating btn-large red"><i class="large material-icons">delete</i></a>';
         getSavedTeamById(idParam);
         fav = true
       })
       .catch((msg) => {
         console.log("statusData: reject = " + msg)
+        document.getElementById("save").innerHTML = '<a class="btn-floating btn-large red"><i class="large material-icons">save</i></a>';
         getTeamById()
         fav = false
       })
@@ -135,6 +137,7 @@
     //     });
     // }
 
+    var save = document.getElementById("save");
         save.onclick = function() {
         console.log("Tombol FAB di klik.");
         if (fav) {

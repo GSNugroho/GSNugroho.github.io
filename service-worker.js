@@ -79,7 +79,9 @@ workbox.precaching.precacheAndRoute([{
         url : '/pages/topskor.html',
         revision: '1'
     },
-]);
+], {
+    ignoreUrlParametersMatching: [/.*/]
+});
 
 workbox.routing.registerRoute(
     /\.(?:png|gif|jpg|jpeg|svg)$/,

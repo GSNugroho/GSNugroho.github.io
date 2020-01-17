@@ -16,6 +16,7 @@ var dbPromised = idb.open("pocket-football", 1, function(upgradeDb) {
       })
       .then(function() {
         console.log("Team Favorite Berhasil Di Simpan.");
+        document.getElementById("save").innerHTML = '<a class="btn-floating btn-large red"><i class="large material-icons">delete</i></a>';
         M.toast({
           html: 'Team berhasil disimpan!'
       });
@@ -60,6 +61,7 @@ var dbPromised = idb.open("pocket-football", 1, function(upgradeDb) {
       return tx.complete;
     }).then(function() {
       console.log('Team Favorite Berhasil Di Hapus.');
+      document.getElementById("save").innerHTML = '<a class="btn-floating btn-large red"><i class="large material-icons">save</i></a>';
       M.toast({
         html: 'Team berhasil dihapus!'
     });
