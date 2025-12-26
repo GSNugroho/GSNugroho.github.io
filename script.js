@@ -1,5 +1,5 @@
 // Ganti tanggal ini dengan tanggal anniversary kalian (format: 'YYYY-MM-DD')
-const anniversaryDate = new Date('2026-06-21');
+const anniversaryDate = new Date('2025-06-21');
 
 // Tombol pesan spesial
 const loveButton = document.getElementById('loveButton');
