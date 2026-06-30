@@ -1,141 +1,225 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Favicon menggunakan foto profil GitHub -->
-    <link rel="icon" type="image/png" href="https://github.com/GSNugroho.png">
     <title>GS Nugroho | Full-Stack Web Developer</title>
-    <!-- Tailwind CSS CDN -->
+    
+    <link rel="icon" type="image/png" href="https://github.com/GSNugroho.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
             theme: {
                 extend: {
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                    },
                     colors: {
-                        brand: {
-                            beige: '#FDFBF7',
-                            card: '#F7F4EB',
-                            orange: '#E97451',
-                            dark: '#2C2A29'
+                        warm: {
+                            bg: '#F9F6F0',      /* Cream hangat */
+                            card: '#F1EDE4',    /* Kartu kontras */
+                            dark: '#1C1917',    /* Espresso gelap */
+                            accent: '#E05A36',  /* Terracotta / Orange hangat */
+                            muted: '#78716C'    /* Abu-abu hangat */
                         }
                     }
                 }
             }
         }
     </script>
+    <style>
+        /* Custom smooth accent glow */
+        .glow-hover:hover {
+            box-shadow: 0 20px 40px -15px rgba(224, 90, 54, 0.15);
+        }
+    </style>
 </head>
-<body class="bg-brand-beige text-brand-dark font-sans selection:bg-brand-orange/20">
+<body class="bg-warm-bg text-warm-dark font-sans selection:bg-warm-accent/20 antialiased">
 
-    <!-- Hero Section -->
-    <header class="min-h-screen flex flex-col justify-center px-6 max-w-5xl mx-auto">
-        <p class="text-brand-orange font-semibold tracking-wider uppercase text-sm mb-3">Full-Stack Programmer & Web Developer</p>
-        <h1 class="text-5xl md:text-7xl font-bold tracking-tight mb-6">
-            Galih Nugroho
+    <nav class="fixed top-4 left-1/2 -translate-x-1/2 w-[90%] max-w-4xl bg-warm-bg/70 backdrop-blur-md border border-warm-dark/5 py-3 px-6 rounded-full flex items-center justify-between z-50 shadow-sm">
+        <a href="#" class="font-bold tracking-tight text-lg">GN<span class="text-warm-accent">.</span></a>
+        <div class="hidden md:flex items-center gap-8 text-sm font-medium text-warm-dark/80">
+            <a href="#about" class="hover:text-warm-accent transition-colors">About</a>
+            <a href="#projects" class="hover:text-warm-accent transition-colors">Projects</a>
+            <a href="#stack" class="hover:text-warm-accent transition-colors">Tech Stack</a>
+        </div>
+        <a href="#contact" class="bg-warm-dark text-warm-bg px-4 py-2 rounded-full text-xs font-semibold hover:bg-warm-accent hover:text-white transition-all shadow-sm">
+            Let's Talk
+        </a>
+    </nav>
+
+    <header class="min-h-screen flex flex-col justify-center px-6 max-w-5xl mx-auto pt-20">
+        <div class="inline-flex items-center gap-2 bg-warm-card border border-warm-dark/5 px-3 py-1.5 rounded-full w-fit mb-6 shadow-sm">
+            <span class="relative flex h-2 w-2">
+                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                <span class="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+            </span>
+            <span class="text-xs font-medium text-warm-dark/80 tracking-wide">Available for Remote & Freelance Contracts</span>
+        </div>
+
+        <h1 class="text-5xl md:text-8xl font-extrabold tracking-tight mb-6 leading-[1.1]">
+            Engineering <span class="text-warm-accent">scalable</span> web systems.
         </h1>
-        <p class="text-lg md:text-xl text-brand-dark/80 max-w-2xl leading-relaxed mb-8">
-            Specializing in architecting large-scale inventory management systems, tailored enterprise platforms, and high-performance web applications.
+        
+        <p class="text-lg md:text-xl text-warm-muted max-w-2xl leading-relaxed mb-10 font-medium">
+            Hi, I'm <span class="text-warm-dark font-semibold">Galih Nugroho</span>. A Full-Stack Programmer specializing in corporate inventory infrastructure, tailored business engines, and high-performance applications.
         </p>
+
         <div class="flex flex-wrap gap-4">
-            <a href="#about" class="bg-brand-orange text-white px-6 py-3 rounded-md font-medium hover:bg-brand-orange/90 transition-colors">
-                Learn More
+            <a href="#projects" class="bg-warm-accent text-white px-7 py-3.5 rounded-full font-semibold hover:bg-warm-accent/90 transition-all shadow-md shadow-warm-accent/10 flex items-center gap-2 group">
+                Explore Projects 
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-4 h-4 group-hover:translate-y-0.5 transition-transform">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="="M19.5 13.5 12 21m0 0-7.5-7.5M12 21V3" />
+                </svg>
             </a>
-            <a href="#contact" class="border border-brand-dark/20 px-6 py-3 rounded-md font-medium hover:bg-brand-dark hover:text-white transition-all">
-                Get In Touch
+            <a href="https://github.com/GSNugroho" target="_blank" class="bg-warm-card border border-warm-dark/10 text-warm-dark px-7 py-3.5 rounded-full font-semibold hover:bg-warm-dark hover:text-white hover:border-warm-dark transition-all flex items-center gap-2">
+                GitHub Profile
             </a>
         </div>
     </header>
 
-    <hr class="border-brand-dark/10">
-
-    <!-- About Section -->
-    <section id="about" class="py-24 px-6 max-w-5xl mx-auto">
-        <h2 class="text-3xl font-bold mb-12 flex items-center gap-4">
-            <span class="text-brand-orange">01.</span> About Me
-        </h2>
-        <div class="grid md:grid-cols-3 gap-8">
-            <div class="md:col-span-2 space-y-6 text-brand-dark/90 leading-relaxed">
-                <p>
-                    I am a professional programmer based in Indonesia with a track record of building robust systems since 2018. Currently, I serve as a Web Developer at <strong>PT Sosiallab Indonesia</strong>.
-                </p>
-                <p>
-                    My core expertise lies in developing internal corporate applications and complex inventory tracking systems, including FIFO optimization frameworks. Alongside my professional employment, I maintain an active presence as a freelance engineer optimizing digital solutions for client needs.
-                </p>
+    <section id="about" class="py-32 px-6 max-w-5xl mx-auto border-t border-warm-dark/5">
+        <div class="grid md:grid-cols-3 gap-12 items-start">
+            <div>
+                <p class="text-xs font-bold text-warm-accent uppercase tracking-widest mb-3">01 // Background</p>
+                <h2 class="text-3xl font-bold tracking-tight">The Core Paradigm</h2>
             </div>
-            <div class="bg-brand-card p-6 rounded-lg border border-brand-dark/5">
-                <h3 class="font-bold text-brand-orange mb-4">Core Focus</h3>
-                <ul class="space-y-2 text-sm text-brand-dark/80">
-                    <li>✓ Inventory & FIFO Systems</li>
-                    <li>✓ Corporate Internal Websites</li>
-                    <li>✓ Web Architecture Optimization</li>
-                    <li>✓ Agile Digital Solutions</li>
-                </ul>
+            <div class="md:col-span-2 space-y-6 text-base md:text-lg text-warm-dark/90 leading-relaxed font-medium">
+                <p>
+                    Currently driving features as a Web Developer at <span class="text-warm-accent font-semibold">PT Sosiallab Indonesia</span>, I bridge the gap between complex database normalization and fluid user interfaces. 
+                </p>
+                <p>
+                    My daily architecture revolves around corporate workflow optimizations, heavy inventory logging frameworks (specializing in custom FIFO tracks), and keeping enterprise infrastructure highly performant and secure.
+                </p>
             </div>
         </div>
     </section>
 
-    <!-- Experience & Projects Section -->
-    <section id="projects" class="py-24 bg-brand-card/50 border-y border-brand-dark/5 px-6">
+    <section id="projects" class="py-32 bg-warm-card/40 border-y border-warm-dark/5 px-6">
         <div class="max-w-5xl mx-auto">
-            <h2 class="text-3xl font-bold mb-12 flex items-center gap-4">
-                <span class="text-brand-orange">02.</span> Projects & Ventures
-            </h2>
-            <div class="grid md:grid-cols-2 gap-6">
-                <!-- Project 1 -->
-                <div class="bg-brand-beige p-8 rounded-lg border border-brand-dark/5 flex flex-col justify-between">
+            <div class="mb-16">
+                <p class="text-xs font-bold text-warm-accent uppercase tracking-widest mb-3">02 // Selected Works</p>
+                <h2 class="text-4xl font-bold tracking-tight">Production Deployments</h2>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-warm-bg p-8 rounded-3xl border border-warm-dark/5 flex flex-col justify-between transition-all duration-300 hover:-translate-y-1 glow-hover">
                     <div>
-                        <span class="text-xs font-semibold text-brand-orange uppercase tracking-wider">Web Application</span>
-                        <h3 class="text-xl font-bold mt-2 mb-3">hibibudget.com</h3>
-                        <p class="text-brand-dark/70 text-sm leading-relaxed mb-6">
-                            A specialized web application engineered around the traditional Japanese Kakeibo budgeting structure, optimized for seamless wealth tracking and analytics.
+                        <div class="flex justify-between items-start mb-6">
+                            <span class="text-xs font-bold px-3 py-1 bg-warm-card text-warm-accent rounded-full uppercase tracking-wider">Live Platform</span>
+                            <span class="text-xs text-warm-muted font-mono">2026</span>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-3">hibibudget.com</h3>
+                        <p class="text-warm-muted text-sm leading-relaxed mb-8">
+                            A minimal web budgeting workspace designed strictly around the Japanese Kakeibo methodology. Built for seamless personal accounting, monthly logging, and structured financial reflections.
                         </p>
                     </div>
-                    <a href="https://hibibudget.com" target="_blank" class="text-sm font-semibold text-brand-dark hover:text-brand-orange transition-colors inline-flex items-center gap-1">
-                        Visit Site ↗
+                    <a href="https://hibibudget.com" target="_blank" class="text-sm font-bold text-warm-dark hover:text-warm-accent transition-colors inline-flex items-center gap-1.5 group">
+                        Launch Application 
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
+                        </svg>
                     </a>
                 </div>
-                <!-- Project 2 -->
-                <div class="bg-brand-beige p-8 rounded-lg border border-brand-dark/5 flex flex-col justify-between">
+
+                <div class="bg-warm-bg p-8 rounded-3xl border border-warm-dark/5 flex flex-col justify-between transition-all duration-300 hover:-translate-y-1 glow-hover">
                     <div>
-                        <span class="text-xs font-semibold text-brand-orange uppercase tracking-wider">E-Commerce & Rental</span>
-                        <h3 class="text-xl font-bold mt-2 mb-3">Graduation Shoe Rental PWA</h3>
-                        <p class="text-brand-dark/70 text-sm leading-relaxed mb-6">
-                            A Progressive Web Application built with Laravel and Tailwind CSS tailored for seasonal event inventory and rental flow management.
+                        <div class="flex justify-between items-start mb-6">
+                            <span class="text-xs font-bold px-3 py-1 bg-amber-100 text-amber-800 rounded-full uppercase tracking-wider">In Production</span>
+                            <span class="text-xs text-warm-muted font-mono">Internal</span>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-3">Graduation Shoe Rental PWA</h3>
+                        <p class="text-warm-muted text-sm leading-relaxed mb-8">
+                            Progressive Web Application tailored for optimizing high-turnover seasonal shoe rentals. Integrates inventory live-tracking, barcode flows, and dynamic reservation schedules.
                         </p>
                     </div>
-                    <span class="text-xs text-brand-dark/40 font-medium italic">In Development</span>
+                    <div class="text-xs text-warm-muted/60 font-semibold italic flex items-center gap-1.5">
+                        <span class="h-1.5 w-1.5 rounded-full bg-warm-muted/40"></span> Active Enterprise Lifecycle
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Tech Stack Section -->
-    <section id="skills" class="py-24 px-6 max-w-5xl mx-auto">
-        <h2 class="text-3xl font-bold mb-12 flex items-center gap-4">
-            <span class="text-brand-orange">03.</span> Tech Stack
-        </h2>
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <div class="p-4 bg-brand-card border border-brand-dark/5 rounded text-center font-medium">Laravel & PHP</div>
-            <div class="p-4 bg-brand-card border border-brand-dark/5 rounded text-center font-medium">Node.js</div>
-            <div class="p-4 bg-brand-card border border-brand-dark/5 rounded text-center font-medium">MySQL & Supabase</div>
-            <div class="p-4 bg-brand-card border border-brand-dark/5 rounded text-center font-medium">Tailwind CSS</div>
-            <div class="p-4 bg-brand-card border border-brand-dark/5 rounded text-center font-medium">Delphi</div>
-            <div class="p-4 bg-brand-card border border-brand-dark/5 rounded text-center font-medium">Git & GitHub</div>
+    <section id="stack" class="py-32 px-6 max-w-5xl mx-auto">
+        <div class="mb-16">
+            <p class="text-xs font-bold text-warm-accent uppercase tracking-widest mb-3">03 // Capabilities</p>
+            <h2 class="text-4xl font-bold tracking-tight">The Tech Stack</h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            
+            <div class="md:col-span-2 bg-warm-card p-8 rounded-3xl border border-warm-dark/5 flex flex-col justify-between">
+                <div>
+                    <h4 class="text-xs font-bold uppercase tracking-wider text-warm-muted mb-4">Core Backend & Architecture</h4>
+                    <p class="text-2xl font-bold mb-6">Robust server logic engineered with Laravel, raw PHP ecosystem, and Node.js runtime microservices.</p>
+                </div>
+                <div class="flex flex-wrap gap-2">
+                    <span class="bg-warm-bg border border-warm-dark/5 px-3 py-1 rounded-full text-xs font-medium">Laravel</span>
+                    <span class="bg-warm-bg border border-warm-dark/5 px-3 py-1 rounded-full text-xs font-medium">PHP 8.x</span>
+                    <span class="bg-warm-bg border border-warm-dark/5 px-3 py-1 rounded-full text-xs font-medium">Node.js</span>
+                    <span class="bg-warm-bg border border-warm-dark/5 px-3 py-1 rounded-full text-xs font-medium">RESTful API</span>
+                </div>
+            </div>
+
+            <div class="bg-warm-dark text-warm-bg p-8 rounded-3xl flex flex-col justify-between">
+                <div>
+                    <h4 class="text-xs font-bold uppercase tracking-wider text-warm-bg/50 mb-4">Data Relational</h4>
+                    <p class="text-xl font-semibold mb-6">Relational database systems design, indexing, and scalable cloud structures.</p>
+                </div>
+                <div class="flex flex-wrap gap-2">
+                    <span class="bg-white/10 px-3 py-1 rounded-full text-xs font-medium">MySQL</span>
+                    <span class="bg-white/10 px-3 py-1 rounded-full text-xs font-medium">Supabase</span>
+                </div>
+            </div>
+
+            <div class="bg-warm-card p-8 rounded-3xl border border-warm-dark/5 flex flex-col justify-between">
+                <div>
+                    <h4 class="text-xs font-bold uppercase tracking-wider text-warm-muted mb-4">Interfaces</h4>
+                    <p class="text-xl font-semibold mb-6">Clean utilities utilizing Tailwind CSS and native responsive JavaScript architectures.</p>
+                </div>
+                <div class="flex flex-wrap gap-2">
+                    <span class="bg-warm-bg border border-warm-dark/5 px-3 py-1 rounded-full text-xs font-medium">Tailwind CSS</span>
+                    <span class="bg-warm-bg border border-warm-dark/5 px-3 py-1 rounded-full text-xs font-medium">Vanilla JS</span>
+                </div>
+            </div>
+
+            <div class="md:col-span-2 bg-warm-card p-8 rounded-3xl border border-warm-dark/5 flex flex-col justify-between">
+                <div>
+                    <h4 class="text-xs font-bold uppercase tracking-wider text-warm-muted mb-4">Desktop & AI Co-authoring</h4>
+                    <p class="text-2xl font-bold mb-6">Experienced in desktop application compilation via Embarcadero Delphi alongside advanced prompt-engineering workflows via GitHub Copilot.</p>
+                </div>
+                <div class="flex flex-wrap gap-2">
+                    <span class="bg-warm-bg border border-warm-dark/5 px-3 py-1 rounded-full text-xs font-medium">Delphi RAD Studio</span>
+                    <span class="bg-warm-bg border border-warm-dark/5 px-3 py-1 rounded-full text-xs font-medium">GitHub Copilot</span>
+                </div>
+            </div>
+
         </div>
     </section>
 
-    <!-- Contact Section -->
-    <footer id="contact" class="py-24 bg-brand-dark text-brand-beige px-6 text-center">
+    <footer id="contact" class="bg-warm-dark text-warm-bg rounded-t-[2.5rem] py-24 px-6 text-center">
         <div class="max-w-3xl mx-auto">
-            <h2 class="text-3xl font-bold mb-4">Let's Build Something Together</h2>
-            <p class="text-brand-beige/70 mb-8 max-w-md mx-auto">
-                Available for consulting, contract infrastructure setups, or full-stack developments via Upwork, Sribu, or Fastwork.
+            <p class="text-xs font-bold text-warm-accent uppercase tracking-widest mb-4">04 // Contact</p>
+            <h2 class="text-4xl md:text-6xl font-bold tracking-tight mb-6">Let's coordinate a deployment.</h2>
+            <p class="text-warm-bg/70 mb-12 max-w-md mx-auto text-sm md:text-base font-medium">
+                Open for active enterprise outsourcing, complex pipeline configurations, or remote contract work via global talent portals.
             </p>
-            <a href="https://github.com/GSNugroho" target="_blank" class="bg-brand-orange text-white px-8 py-3 rounded-md font-medium hover:bg-brand-orange/90 transition-colors inline-block">
-                View My GitHub Profile
-            </a>
-            <p class="mt-16 text-xs text-brand-beige/40">
-                &copy; 2026 Galih Nugroho. Built with clean lines and warm hues.
+            
+            <div class="flex flex-wrap justify-center gap-4 text-xs font-bold uppercase tracking-wider">
+                <a href="https://github.com/GSNugroho" target="_blank" class="border border-white/20 hover:border-white px-5 py-2.5 rounded-full transition-colors">GitHub</a>
+                <a href="#" class="border border-white/20 hover:border-white px-5 py-2.5 rounded-full transition-colors">Upwork</a>
+                <a href="#" class="border border-white/20 hover:border-white px-5 py-2.5 rounded-full transition-colors">Sribu</a>
+                <a href="#" class="border border-white/20 hover:border-white px-5 py-2.5 rounded-full transition-colors">Fastwork</a>
+            </div>
+
+            <p class="mt-20 text-xs text-warm-bg/30 font-medium">
+                &copy; 2026 Galih Nugroho. Handcrafted with modern techup philosophy.
             </p>
         </div>
     </footer>
