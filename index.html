@@ -3,258 +3,317 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GS Nugroho | Full-Stack Web Developer</title>
-    
+    <title>Galih Nugroho — Full-Stack Web Developer</title>
+    <meta name="description" content="Galih Nugroho is a full-stack web developer in Solo, Indonesia. Laravel, MySQL, and Tailwind CSS — building web apps that real people use.">
+
     <link rel="icon" type="image/png" href="https://github.com/GSNugroho.png">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&display=swap" rel="stylesheet">
 
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
+        /*
+          Neo-brutalist system — young, loud, deliberate.
+          paper : warm off-white canvas
+          night : pure-ish black for borders, text, and hard shadows
+          blue  : electric blue — primary actions and links
+          sun   : yellow — highlights, live-status, stickers
+          Rule of use: black does the structure, blue does the action,
+          yellow does the celebration. Nothing else gets color.
+        */
         tailwind.config = {
             theme: {
                 extend: {
                     fontFamily: {
-                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        display: ['Bricolage Grotesque', 'ui-sans-serif', 'system-ui', 'sans-serif'],
                     },
                     colors: {
-                        warm: {
-                            bg: '#F9F6F0',      /* Cream hangat */
-                            card: '#F1EDE4',    /* Kartu kontras */
-                            dark: '#1C1917',    /* Espresso gelap */
-                            accent: '#E05A36',  /* Terracotta / Orange hangat */
-                            muted: '#78716C'    /* Abu-abu hangat */
-                        }
+                        paper: '#FAF6ED',
+                        night: '#141414',
+                        blue:  '#3B5BFD',
+                        sun:   '#FFD23F',
+                        muted: '#55524B'
+                    },
+                    boxShadow: {
+                        brutal:    '6px 6px 0 0 #141414',
+                        brutalSm:  '4px 4px 0 0 #141414',
+                        brutalXs:  '3px 3px 0 0 #141414'
                     }
                 }
             }
         }
     </script>
     <style>
-        .glow-hover:hover {
-            box-shadow: 0 30px 60px -15px rgba(224, 90, 54, 0.12);
+        ::selection { background: #FFD23F; color: #141414; }
+        :focus-visible { outline: 3px solid #3B5BFD; outline-offset: 3px; }
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+            * { transition: none !important; }
         }
+        /* Hard-shadow press: the card physically "clicks down" on hover/press */
+        .press { transition: transform .12s ease, box-shadow .12s ease; }
+        .press:hover  { transform: translate(2px, 2px); box-shadow: 4px 4px 0 0 #141414; }
+        .press:active { transform: translate(6px, 6px); box-shadow: 0 0 0 0 #141414; }
     </style>
 </head>
-<body class="bg-warm-bg text-warm-dark font-sans selection:bg-warm-accent/20 antialiased">
+<body class="bg-paper text-night font-display antialiased">
 
-    <nav class="fixed top-4 left-1/2 -translate-x-1/2 w-[90%] max-w-4xl bg-warm-bg/70 backdrop-blur-md border border-warm-dark/5 py-3 px-6 rounded-full flex items-center justify-between z-50 shadow-sm">
-        <a href="#" class="font-bold tracking-tight text-lg">GN<span class="text-warm-accent">.</span></a>
-        <div class="hidden md:flex items-center gap-8 text-sm font-medium text-warm-dark/80">
-            <a href="#about" class="hover:text-warm-accent transition-colors">About</a>
-            <a href="#projects" class="hover:text-warm-accent transition-colors">Projects</a>
-            <a href="#stack" class="hover:text-warm-accent transition-colors">Tech Stack</a>
+    <nav class="sticky top-0 bg-paper border-b-2 border-night z-50">
+        <div class="max-w-5xl mx-auto px-5 h-16 flex items-center justify-between gap-4">
+            <a href="#" class="font-extrabold tracking-tight text-lg">Galih<span class="text-blue">Nugroho</span></a>
+            <div class="hidden md:flex items-center gap-7 text-sm font-semibold">
+                <a href="#about" class="hover:text-blue">About</a>
+                <a href="#projects" class="hover:text-blue">Projects</a>
+                <a href="#stack" class="hover:text-blue">Toolbox</a>
+            </div>
+            <a href="#contact" class="press bg-sun border-2 border-night shadow-brutalXs px-4 py-1.5 rounded-md text-sm font-bold">
+                Contact
+            </a>
         </div>
-        <a href="#contact" class="bg-warm-dark text-warm-bg px-4 py-2 rounded-full text-xs font-semibold hover:bg-warm-accent hover:text-white transition-all shadow-sm">
-            Let's Talk
-        </a>
-    </nav> 
+    </nav>
 
-    <header class="min-h-screen flex flex-col justify-center px-6 max-w-5xl mx-auto pt-20">
-        <div class="inline-flex items-center gap-2 bg-warm-card border border-warm-dark/5 px-3 py-1.5 rounded-full w-fit mb-6 shadow-sm">
-            <span class="relative flex h-2 w-2">
-                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                <span class="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
-            </span>
-            <span class="text-xs font-medium text-warm-dark/80 tracking-wide">Available for Remote & Freelance Contracts</span>
-        </div>
-
-        <h1 class="text-5xl md:text-8xl font-extrabold tracking-tight mb-6 leading-[1.1]">
-            Engineering <span class="text-warm-accent">scalable</span> web systems.
-        </h1>
-        
-        <p class="text-lg md:text-xl text-warm-muted max-w-2xl leading-relaxed mb-10 font-medium">
-            Hi, I'm <span class="text-warm-dark font-semibold">Galih Nugroho</span>. A Full-Stack Programmer specializing in corporate infrastructure, optimized database architecture, and high-performance applications.
+    <header class="px-5 max-w-5xl mx-auto pt-20 pb-16 md:pt-28 md:pb-24">
+        <p class="inline-block bg-night text-paper px-3 py-1.5 rounded-md text-xs font-bold -rotate-2 mb-7">
+            Full-stack developer · Solo, Indonesia
         </p>
 
-        <div class="flex flex-wrap gap-4">
-            <a href="#projects" class="bg-warm-accent text-white px-7 py-3.5 rounded-full font-semibold hover:bg-warm-accent/90 transition-all shadow-md shadow-warm-accent/10 flex items-center gap-2 group">
-                Explore Projects 
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-4 h-4 group-hover:translate-y-0.5 transition-transform">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 13.5 12 21m0 0-7.5-7.5M12 21V3" />
-                </svg>
+        <h1 class="text-5xl sm:text-6xl md:text-8xl font-extrabold tracking-tight leading-[0.98] mb-8">
+            I build web apps<br>
+            people <span class="relative inline-block">actually<span class="absolute left-0 right-0 bottom-1 md:bottom-2 h-3 md:h-5 bg-sun -z-10 -rotate-1"></span></span> use.
+        </h1>
+
+        <p class="text-lg md:text-xl text-muted max-w-2xl leading-relaxed mb-10 font-medium">
+            Hey, I'm Galih — I design, build, and keep running production web
+            systems with Laravel at the core. From internal company tooling to
+            public products, shipped is only the start: I maintain what I launch.
+        </p>
+
+        <div class="flex flex-wrap items-center gap-4">
+            <a href="#projects" class="press bg-blue text-white border-2 border-night shadow-brutal px-7 py-3.5 rounded-lg font-bold">
+                See my work
             </a>
-            <a href="https://github.com/GSNugroho" target="_blank" class="bg-warm-card border border-warm-dark/10 text-warm-dark px-7 py-3.5 rounded-full font-semibold hover:bg-warm-dark hover:text-white hover:border-warm-dark transition-all flex items-center gap-2">
-                GitHub Profile
+            <a href="https://github.com/GSNugroho" target="_blank" rel="noopener" class="press bg-paper border-2 border-night shadow-brutal px-7 py-3.5 rounded-lg font-bold">
+                GitHub ↗
             </a>
+            <span class="flex items-center gap-2 text-sm font-bold ml-1">
+                <span class="inline-block h-2.5 w-2.5 rounded-full bg-blue border border-night" aria-hidden="true"></span>
+                Open for remote &amp; contract work
+            </span>
         </div>
     </header>
 
-    <section id="about" class="py-32 px-6 max-w-5xl mx-auto border-t border-warm-dark/5">
-        <div class="grid md:grid-cols-3 gap-12 items-start">
-            <div>
-                <p class="text-xs font-bold text-warm-accent uppercase tracking-widest mb-3">01 // Background</p>
-                <h2 class="text-3xl font-bold tracking-tight">The Core Paradigm</h2>
-            </div>
-            <div class="md:col-span-2 space-y-6 text-base md:text-lg text-warm-dark/90 leading-relaxed font-medium">
+    <!-- Static ticker band: pure vibes, zero animation -->
+    <div class="bg-night text-sun border-y-2 border-night overflow-hidden -rotate-1 scale-[1.02]" aria-hidden="true">
+        <p class="whitespace-nowrap py-3 text-sm font-bold tracking-wide">
+            LARAVEL ✦ MYSQL ✦ TAILWIND CSS ✦ NODE.JS ✦ PHP 8 ✦ PWA ✦ SUPABASE ✦ LARAVEL ✦ MYSQL ✦ TAILWIND CSS ✦ NODE.JS ✦ PHP 8 ✦ PWA ✦ SUPABASE ✦ LARAVEL ✦ MYSQL ✦ TAILWIND CSS
+        </p>
+    </div>
+
+    <section id="about" class="py-20 md:py-28 px-5 max-w-5xl mx-auto">
+        <div class="grid md:grid-cols-3 gap-8 items-start">
+            <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight">What I<br class="hidden md:block"> do</h2>
+            <div class="md:col-span-2 space-y-5 text-base md:text-lg leading-relaxed font-medium">
                 <p>
-                    My daily architecture revolves around corporate workflow optimizations, heavy inventory logging frameworks (specializing in custom FIFO tracks), and keeping enterprise infrastructure highly performant and secure.
+                    Day to day: corporate workflow systems — inventory logging with
+                    custom FIFO tracking, reporting pipelines, and the internal tools
+                    a business actually runs on.
+                </p>
+                <p>
+                    On the side: my own products (listed below), which I keep online,
+                    patched, and fast. Building something is one skill; running it for
+                    years is another — I do both.
                 </p>
             </div>
         </div>
     </section>
 
-    <section id="projects" class="py-32 bg-warm-card/40 border-y border-warm-dark/5 px-6">
+    <section id="projects" class="py-20 md:py-28 px-5 bg-blue border-y-2 border-night">
         <div class="max-w-5xl mx-auto">
-            <div class="mb-16">
-                <p class="text-xs font-bold text-warm-accent uppercase tracking-widest mb-3">02 // Selected Works</p>
-                <h2 class="text-4xl font-bold tracking-tight">Production Deployments</h2>
+            <div class="mb-12 max-w-2xl">
+                <h2 class="text-4xl md:text-5xl font-extrabold tracking-tight text-white mb-4">Shipped &amp; running</h2>
+                <p class="text-white/85 font-medium text-lg">Live systems with real users — built, deployed, and maintained by me.</p>
             </div>
+
+            <!-- Featured: client production system -->
+            <article class="bg-paper border-2 border-night rounded-xl shadow-brutal p-7 md:p-9 mb-8">
+                <div class="md:flex md:items-start md:justify-between md:gap-10">
+                    <div class="max-w-2xl">
+                        <div class="flex flex-wrap items-center gap-2 mb-5">
+                            <span class="bg-night text-paper px-2.5 py-1 rounded-md text-[11px] font-bold">Client work</span>
+                            <span class="bg-sun border-2 border-night px-2.5 py-0.5 rounded-md text-[11px] font-bold">● Live</span>
+                        </div>
+                        <h3 class="text-2xl md:text-3xl font-extrabold tracking-tight mb-3">kontraktordesainbangun.id</h3>
+                        <p class="text-muted leading-relaxed font-medium mb-6">
+                            Company platform for JN Design &amp; Build, a Solo-based
+                            design-and-build contractor. Service catalog with pricing,
+                            project portfolio, an article engine for SEO, testimonials,
+                            and an admin panel the team runs it all from — built to bring
+                            in leads, not just to look good.
+                        </p>
+                    </div>
+                    <div class="shrink-0">
+                        <div class="flex flex-wrap gap-1.5 mb-6 max-w-xs">
+                            <span class="border-2 border-night px-2.5 py-0.5 rounded-md text-[11px] font-bold">Laravel</span>
+                            <span class="border-2 border-night px-2.5 py-0.5 rounded-md text-[11px] font-bold">MySQL</span>
+                            <span class="border-2 border-night px-2.5 py-0.5 rounded-md text-[11px] font-bold">Tailwind</span>
+                            <span class="border-2 border-night px-2.5 py-0.5 rounded-md text-[11px] font-bold">CMS</span>
+                        </div>
+                        <a href="https://kontraktordesainbangun.id/" target="_blank" rel="noopener" class="press inline-block bg-blue text-white border-2 border-night shadow-brutalSm px-5 py-2.5 rounded-lg text-sm font-bold">
+                            Visit site ↗
+                        </a>
+                    </div>
+                </div>
+            </article>
 
             <div class="grid md:grid-cols-2 gap-8">
-                
-                <div class="bg-warm-bg p-8 rounded-[2rem] border border-warm-dark/10 shadow-sm transition-all duration-300 hover:-translate-y-1 glow-hover flex flex-col justify-between relative overflow-hidden">
-                    <div>
-                        <div class="flex justify-between items-center gap-4 mb-6">
-                            <span class="text-xs font-bold px-3 py-1 bg-warm-accent text-white rounded-full uppercase tracking-wider">Web Application</span>
-                            <span class="text-xs font-bold text-green-600 bg-green-50 border border-green-200 px-2.5 py-0.5 rounded-full uppercase tracking-wider font-mono text-[11px]">🚀 Live</span>
-                        </div>
-                        <h3 class="text-2xl md:text-3xl font-extrabold tracking-tight mb-3">hibibudget.com</h3>
-                        <p class="text-warm-muted text-sm leading-relaxed mb-6">
-                            A specialized accounting and personal finance workspace engineered around the traditional Japanese Kakeibo budgeting framework. Designed with a frictionless interface for micro-expense logging, monthly allocation tracking, and automated reflections.
-                        </p>
-                        <div class="flex flex-wrap gap-1.5 mb-8">
-                            <span class="bg-warm-card text-warm-dark px-2.5 py-0.5 rounded-full text-[11px] font-semibold">Laravel</span>
-                            <span class="bg-warm-card text-warm-dark px-2.5 py-0.5 rounded-full text-[11px] font-semibold">Tailwind CSS</span>
-                            <span class="bg-warm-card text-warm-dark px-2.5 py-0.5 rounded-full text-[11px] font-semibold">MySQL</span>
-                        </div>
-                    </div>
-                    <a href="https://hibibudget.com" target="_blank" class="text-sm font-bold text-warm-dark hover:text-warm-accent transition-colors inline-flex items-center gap-1.5 group w-fit">
-                        Launch Application 
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
-                        </svg>
-                    </a>
-                </div>
 
-                <div class="bg-warm-bg p-8 rounded-[2rem] border border-warm-dark/10 shadow-sm transition-all duration-300 hover:-translate-y-1 glow-hover flex flex-col justify-between relative overflow-hidden">
+                <article class="bg-paper border-2 border-night rounded-xl shadow-brutal p-7 flex flex-col justify-between">
                     <div>
-                        <div class="flex justify-between items-center gap-4 mb-6">
-                            <span class="text-xs font-bold px-3 py-1 bg-warm-accent text-white rounded-full uppercase tracking-wider">PWA / Rental</span>
-                            <span class="text-xs font-bold text-green-600 bg-green-50 border border-green-200 px-2.5 py-0.5 rounded-full uppercase tracking-wider font-mono text-[11px]">🚀 Live</span>
+                        <div class="flex flex-wrap items-center gap-2 mb-5">
+                            <span class="bg-night text-paper px-2.5 py-1 rounded-md text-[11px] font-bold">Own product</span>
+                            <span class="bg-sun border-2 border-night px-2.5 py-0.5 rounded-md text-[11px] font-bold">● Live</span>
                         </div>
-                        <h3 class="text-2xl md:text-3xl font-extrabold tracking-tight mb-3">pinjamheels.web.id</h3>
-                        <p class="text-warm-muted text-sm leading-relaxed mb-6">
-                            A Progressive Web Application structured for seasonal rental lifecycles, specifically targeted at graduation events. Features rigorous live stock monitoring, conditional terms integration, and rapid mobile-first booking pipelines.
+                        <h3 class="text-2xl font-extrabold tracking-tight mb-3">pagar-goid.web.id</h3>
+                        <p class="text-muted text-sm leading-relaxed font-medium mb-6">
+                            Pagar Goid watches over websites run by local government, schools,
+                            cooperatives, and small businesses — passively, on a schedule.
+                            SSL certs, security headers, DNS &amp; email records (SPF, DMARC,
+                            DKIM), lookalike phishing domains, and defacement checks, scored
+                            0–100 with fixes and Telegram alerts when something breaks.
                         </p>
-                        <div class="flex flex-wrap gap-1.5 mb-8">
-                            <span class="bg-warm-card text-warm-dark px-2.5 py-0.5 rounded-full text-[11px] font-semibold">Laravel</span>
-                            <span class="bg-warm-card text-warm-dark px-2.5 py-0.5 rounded-full text-[11px] font-semibold">Tailwind CSS</span>
-                            <span class="bg-warm-card text-warm-dark px-2.5 py-0.5 rounded-full text-[11px] font-semibold">Live Inventory</span>
+                        <div class="flex flex-wrap gap-1.5 mb-7">
+                            <span class="border-2 border-night px-2.5 py-0.5 rounded-md text-[11px] font-bold">Laravel</span>
+                            <span class="border-2 border-night px-2.5 py-0.5 rounded-md text-[11px] font-bold">Scheduled jobs</span>
+                            <span class="border-2 border-night px-2.5 py-0.5 rounded-md text-[11px] font-bold">Telegram Bot</span>
+                            <span class="border-2 border-night px-2.5 py-0.5 rounded-md text-[11px] font-bold">DNS / TLS</span>
                         </div>
                     </div>
-                    <a href="https://pinjamheels.web.id" target="_blank" class="text-sm font-bold text-warm-dark hover:text-warm-accent transition-colors inline-flex items-center gap-1.5 group w-fit">
-                        Launch Application 
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
-                        </svg>
+                    <a href="https://pagar-goid.web.id/" target="_blank" rel="noopener" class="press inline-block w-fit bg-paper border-2 border-night shadow-brutalSm px-5 py-2.5 rounded-lg text-sm font-bold">
+                        Visit site ↗
                     </a>
-                </div>
+                </article>
 
-                <!-- PROJECT: duacerita.web.id -->
-                <div class="bg-warm-bg p-8 rounded-[2rem] border border-warm-dark/10 shadow-sm transition-all duration-300 hover:-translate-y-1 glow-hover flex flex-col justify-between relative overflow-hidden md:col-span-2">
+                <article class="bg-paper border-2 border-night rounded-xl shadow-brutal p-7 flex flex-col justify-between">
                     <div>
-                        <div class="flex justify-between items-center gap-4 mb-6">
-                            <span class="text-xs font-bold px-3 py-1 bg-warm-accent text-white rounded-full uppercase tracking-wider">Management Platform</span>
-                            <span class="text-xs font-bold text-amber-600 bg-amber-50 border border-amber-200 px-2.5 py-0.5 rounded-full uppercase tracking-wider font-mono text-[11px]">🛠️ In Development</span>
+                        <div class="flex flex-wrap items-center gap-2 mb-5">
+                            <span class="bg-night text-paper px-2.5 py-1 rounded-md text-[11px] font-bold">Own product</span>
+                            <span class="bg-sun border-2 border-night px-2.5 py-0.5 rounded-md text-[11px] font-bold">● Live</span>
                         </div>
-                        <h3 class="text-2xl md:text-3xl font-extrabold tracking-tight mb-3">duacerita.web.id</h3>
-                        <p class="text-warm-muted text-sm leading-relaxed mb-6">
-                            A comprehensive digital wedding planning and coordination platform engineered to handle complex event management structures. It synchronizes cross-functional timeline architectures, multi-vendor logistical assignments, client budget tracking, and fluid guestlist orchestration.
+                        <h3 class="text-2xl font-extrabold tracking-tight mb-3">hibibudget.com</h3>
+                        <p class="text-muted text-sm leading-relaxed font-medium mb-6">
+                            A personal finance workspace built around the Japanese Kakeibo
+                            budgeting method: quick micro-expense logging, monthly allocation
+                            tracking, and automated end-of-month reflections.
                         </p>
-                        <div class="flex flex-wrap gap-1.5 mb-8">
-                            <span class="bg-warm-card text-warm-dark px-2.5 py-0.5 rounded-full text-[11px] font-semibold">Laravel</span>
-                            <span class="bg-warm-card text-warm-dark px-2.5 py-0.5 rounded-full text-[11px] font-semibold">Tailwind CSS</span>
-                            <span class="bg-warm-card text-warm-dark px-2.5 py-0.5 rounded-full text-[11px] font-semibold">MySQL</span>
-                            <span class="bg-warm-card text-warm-dark px-2.5 py-0.5 rounded-full text-[11px] font-semibold">Node.js</span>
+                        <div class="flex flex-wrap gap-1.5 mb-7">
+                            <span class="border-2 border-night px-2.5 py-0.5 rounded-md text-[11px] font-bold">Laravel</span>
+                            <span class="border-2 border-night px-2.5 py-0.5 rounded-md text-[11px] font-bold">Tailwind</span>
+                            <span class="border-2 border-night px-2.5 py-0.5 rounded-md text-[11px] font-bold">MySQL</span>
                         </div>
                     </div>
-                    <a href="https://github.com/GSNugroho" target="_blank" class="text-sm font-bold text-warm-dark hover:text-warm-accent transition-colors inline-flex items-center gap-1.5 group w-fit">
-                        View Source Code 
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
-                        </svg>
+                    <a href="https://hibibudget.com" target="_blank" rel="noopener" class="press inline-block w-fit bg-paper border-2 border-night shadow-brutalSm px-5 py-2.5 rounded-lg text-sm font-bold">
+                        Visit site ↗
                     </a>
-                </div>
+                </article>
+
+                <article class="bg-paper border-2 border-night rounded-xl shadow-brutal p-7 flex flex-col justify-between">
+                    <div>
+                        <div class="flex flex-wrap items-center gap-2 mb-5">
+                            <span class="bg-night text-paper px-2.5 py-1 rounded-md text-[11px] font-bold">Own product</span>
+                            <span class="bg-sun border-2 border-night px-2.5 py-0.5 rounded-md text-[11px] font-bold">● Live</span>
+                        </div>
+                        <h3 class="text-2xl font-extrabold tracking-tight mb-3">pinjamheels.web.id</h3>
+                        <p class="text-muted text-sm leading-relaxed font-medium mb-6">
+                            A progressive web app for seasonal heel rentals around graduation
+                            season: live stock availability, rental terms baked into the flow,
+                            and a mobile-first booking pipeline.
+                        </p>
+                        <div class="flex flex-wrap gap-1.5 mb-7">
+                            <span class="border-2 border-night px-2.5 py-0.5 rounded-md text-[11px] font-bold">Laravel</span>
+                            <span class="border-2 border-night px-2.5 py-0.5 rounded-md text-[11px] font-bold">PWA</span>
+                            <span class="border-2 border-night px-2.5 py-0.5 rounded-md text-[11px] font-bold">Live inventory</span>
+                        </div>
+                    </div>
+                    <a href="https://pinjamheels.web.id" target="_blank" rel="noopener" class="press inline-block w-fit bg-paper border-2 border-night shadow-brutalSm px-5 py-2.5 rounded-lg text-sm font-bold">
+                        Visit site ↗
+                    </a>
+                </article>
+
+                <article class="bg-paper border-2 border-night rounded-xl shadow-brutal p-7 flex flex-col justify-between">
+                    <div>
+                        <div class="flex flex-wrap items-center gap-2 mb-5">
+                            <span class="bg-night text-paper px-2.5 py-1 rounded-md text-[11px] font-bold">Own product</span>
+                            <span class="border-2 border-dashed border-night px-2.5 py-0.5 rounded-md text-[11px] font-bold">In development</span>
+                        </div>
+                        <h3 class="text-2xl font-extrabold tracking-tight mb-3">papankos.web.id</h3>
+                        <p class="text-muted text-sm leading-relaxed font-medium mb-6">
+                            A platform for Indonesian kost (boarding houses), serving both
+                            sides of the market: room listings and detailed info for people
+                            hunting a kost, plus management tools for operators to run their
+                            properties.
+                        </p>
+                        <div class="flex flex-wrap gap-1.5 mb-7">
+                            <span class="border-2 border-night px-2.5 py-0.5 rounded-md text-[11px] font-bold">Laravel</span>
+                            <span class="border-2 border-night px-2.5 py-0.5 rounded-md text-[11px] font-bold">MySQL</span>
+                            <span class="border-2 border-night px-2.5 py-0.5 rounded-md text-[11px] font-bold">Tailwind</span>
+                        </div>
+                    </div>
+                    <a href="https://papankos.web.id" target="_blank" rel="noopener" class="press inline-block w-fit bg-paper border-2 border-night shadow-brutalSm px-5 py-2.5 rounded-lg text-sm font-bold">
+                        Visit site ↗
+                    </a>
+                </article>
 
             </div>
         </div>
     </section>
 
-    <section id="stack" class="py-32 px-6 max-w-5xl mx-auto">
-        <div class="mb-16">
-            <p class="text-xs font-bold text-warm-accent uppercase tracking-widest mb-3">03 // Capabilities</p>
-            <h2 class="text-4xl font-bold tracking-tight">The Tech Stack</h2>
-        </div>
+    <section id="stack" class="py-20 md:py-28 px-5 max-w-5xl mx-auto">
+        <h2 class="text-4xl md:text-5xl font-extrabold tracking-tight mb-12">Toolbox</h2>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div class="md:col-span-2 bg-warm-card p-8 rounded-3xl border border-warm-dark/5 flex flex-col justify-between">
-                <div>
-                    <h4 class="text-xs font-bold uppercase tracking-wider text-warm-muted mb-4">Core Backend & Architecture</h4>
-                    <p class="text-2xl font-bold mb-6">Robust server logic engineered with Laravel, raw PHP ecosystem, and Node.js runtime microservices.</p>
-                </div>
-                <div class="flex flex-wrap gap-2">
-                    <span class="bg-warm-bg border border-warm-dark/5 px-3 py-1 rounded-full text-xs font-medium">Laravel</span>
-                    <span class="bg-warm-bg border border-warm-dark/5 px-3 py-1 rounded-full text-xs font-medium">PHP 8.x</span>
-                    <span class="bg-warm-bg border border-warm-dark/5 px-3 py-1 rounded-full text-xs font-medium">Node.js</span>
-                </div>
+        <div class="grid md:grid-cols-2 gap-6">
+            <div class="border-2 border-night rounded-xl shadow-brutalSm p-7 bg-paper">
+                <h3 class="font-extrabold text-xl mb-2">Backend</h3>
+                <p class="text-muted text-sm font-medium leading-relaxed mb-4">Server logic and APIs with Laravel and the PHP ecosystem, plus Node.js services where they fit better.</p>
+                <p class="font-bold text-sm">Laravel · PHP 8.x · Node.js</p>
             </div>
-
-            <div class="bg-warm-dark text-warm-bg p-8 rounded-3xl flex flex-col justify-between">
-                <div>
-                    <h4 class="text-xs font-bold uppercase tracking-wider text-warm-bg/50 mb-4">Data Relational</h4>
-                    <p class="text-xl font-semibold mb-6">Relational database systems design, indexing, and scalable cloud structures.</p>
-                </div>
-                <div class="flex flex-wrap gap-2">
-                    <span class="bg-white/10 px-3 py-1 rounded-full text-xs font-medium">MySQL</span>
-                    <span class="bg-white/10 px-3 py-1 rounded-full text-xs font-medium">Supabase</span>
-                </div>
+            <div class="border-2 border-night rounded-xl shadow-brutalSm p-7 bg-sun">
+                <h3 class="font-extrabold text-xl mb-2">Data</h3>
+                <p class="text-night/70 text-sm font-medium leading-relaxed mb-4">Relational schema design, indexing, and query tuning for systems that stay fast as data grows.</p>
+                <p class="font-bold text-sm">MySQL · Supabase</p>
             </div>
-
-            <div class="bg-warm-card p-8 rounded-3xl border border-warm-dark/5 flex flex-col justify-between">
-                <div>
-                    <h4 class="text-xs font-bold uppercase tracking-wider text-warm-muted mb-4">Interfaces</h4>
-                    <p class="text-xl font-semibold mb-6">Clean utilities utilizing Tailwind CSS and native responsive JavaScript architectures.</p>
-                </div>
-                <div class="flex flex-wrap gap-2">
-                    <span class="bg-warm-bg border border-warm-dark/5 px-3 py-1 rounded-full text-xs font-medium">Tailwind CSS</span>
-                    <span class="bg-warm-bg border border-warm-dark/5 px-3 py-1 rounded-full text-xs font-medium">Vanilla JS</span>
-                </div>
+            <div class="border-2 border-night rounded-xl shadow-brutalSm p-7 bg-paper">
+                <h3 class="font-extrabold text-xl mb-2">Frontend</h3>
+                <p class="text-muted text-sm font-medium leading-relaxed mb-4">Clean, responsive interfaces with Tailwind CSS and plain JavaScript — no framework unless the product needs one.</p>
+                <p class="font-bold text-sm">Tailwind CSS · Vanilla JS</p>
             </div>
-
-            <div class="md:col-span-2 bg-warm-card p-8 rounded-3xl border border-warm-dark/5 flex flex-col justify-between">
-                <div>
-                    <h4 class="text-xs font-bold uppercase tracking-wider text-warm-muted mb-4">Desktop & AI Co-authoring</h4>
-                    <p class="text-2xl font-bold mb-6">Experienced in desktop application compilation via Embarcadero Delphi alongside advanced prompt-engineering workflows via GitHub Copilot.</p>
-                </div>
-                <div class="flex flex-wrap gap-2">
-                    <span class="bg-warm-bg border border-warm-dark/5 px-3 py-1 rounded-full text-xs font-medium">Delphi RAD Studio</span>
-                    <span class="bg-warm-bg border border-warm-dark/5 px-3 py-1 rounded-full text-xs font-medium">GitHub Copilot</span>
-                </div>
+            <div class="border-2 border-night rounded-xl shadow-brutalSm p-7 bg-paper">
+                <h3 class="font-extrabold text-xl mb-2">Also in the bag</h3>
+                <p class="text-muted text-sm font-medium leading-relaxed mb-4">Desktop apps in Embarcadero Delphi, and AI-assisted workflows with GitHub Copilot in daily practice.</p>
+                <p class="font-bold text-sm">Delphi RAD Studio · GitHub Copilot</p>
             </div>
         </div>
     </section>
 
-    <footer id="contact" class="bg-warm-dark text-warm-bg rounded-t-[2.5rem] py-24 px-6 text-center">
-        <div class="max-w-3xl mx-auto">
-            <p class="text-xs font-bold text-warm-accent uppercase tracking-widest mb-4">04 // Contact</p>
-            <h2 class="text-4xl md:text-6xl font-bold tracking-tight mb-6">Let's coordinate a deployment.</h2>
-            <p class="text-warm-bg/70 mb-12 max-w-md mx-auto text-sm md:text-base font-medium">
-                Open for active enterprise outsourcing, complex pipeline configurations, or remote contract work via global talent portals.
+    <footer id="contact" class="bg-night text-paper border-t-2 border-night py-20 md:py-28 px-5">
+        <div class="max-w-5xl mx-auto">
+            <p class="inline-block bg-sun text-night px-3 py-1.5 rounded-md text-xs font-bold rotate-1 mb-7">Say hi</p>
+            <h2 class="text-4xl md:text-6xl font-extrabold tracking-tight mb-5 max-w-2xl leading-[1.02]">Got a system to build — or one to keep running?</h2>
+            <p class="text-paper/70 mb-10 max-w-xl leading-relaxed font-medium">
+                I'm open to remote contracts, outsourced builds, and long-term
+                maintenance work. The fastest way to reach me is GitHub.
             </p>
-            
-            <div class="flex flex-wrap justify-center gap-4 text-xs font-bold uppercase tracking-wider">
-                <a href="https://github.com/GSNugroho" target="_blank" class="border border-white/20 hover:border-white px-5 py-2.5 rounded-full transition-colors">GitHub</a>
-                <a href="#" class="border border-white/20 hover:border-white px-5 py-2.5 rounded-full transition-colors">Upwork</a>
-                <a href="#" class="border border-white/20 hover:border-white px-5 py-2.5 rounded-full transition-colors">Sribu</a>
-                <a href="#" class="border border-white/20 hover:border-white px-5 py-2.5 rounded-full transition-colors">Fastwork</a>
+
+            <div class="flex flex-wrap gap-4 text-sm font-bold">
+                <a href="https://github.com/GSNugroho" target="_blank" rel="noopener" class="press bg-sun text-night border-2 border-paper shadow-[4px_4px_0_0_#FAF6ED] px-6 py-3 rounded-lg">GitHub ↗</a>
+                <!-- TODO: ganti href="#" di bawah dengan URL profil freelance kamu yang asli -->
+                <a href="#" class="border-2 border-paper/40 px-6 py-3 rounded-lg hover:border-paper transition-colors">Upwork</a>
+                <a href="#" class="border-2 border-paper/40 px-6 py-3 rounded-lg hover:border-paper transition-colors">Sribu</a>
+                <a href="#" class="border-2 border-paper/40 px-6 py-3 rounded-lg hover:border-paper transition-colors">Fastwork</a>
             </div>
 
-            <p class="mt-20 text-xs text-warm-bg/30 font-medium">
-                &copy; 2026 Galih Nugroho. Handcrafted with modern techup philosophy.
-            </p>
+            <p class="mt-20 text-xs text-paper/40 font-medium">© 2026 Galih Nugroho · Made in Solo, Indonesia</p>
         </div>
     </footer>
 
