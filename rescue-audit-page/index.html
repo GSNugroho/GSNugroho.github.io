@@ -1,128 +1,266 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Laravel Rescue Audit — Galih Nugroho</title>
-<meta name="description" content="Know what's inside your Laravel app before you pay anyone to touch it. A fixed-price security and health audit with a written report in 24 hours.">
-<style>
-  :root { --bg:#0b1020; --panel:#121a30; --ink:#e8ecf5; --muted:#9aa5bf; --line:#22304f; --accent:#f97316; --ok:#22c55e; --bad:#ef4444; }
-  @media (prefers-color-scheme: light) { :root { --bg:#f7f8fb; --panel:#ffffff; --ink:#0f172a; --muted:#5b6478; --line:#e3e7ef; } }
-  * { box-sizing:border-box; }
-  body { margin:0; background:var(--bg); color:var(--ink); font:16px/1.6 ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
-  a { color:inherit; }
-  .wrap { max-width:880px; margin:0 auto; padding:40px 20px 72px; }
-  nav { display:flex; justify-content:space-between; align-items:center; font-size:14px; color:var(--muted); margin-bottom:56px; }
-  nav a { text-decoration:none; }
-  nav a:hover { color:var(--ink); }
-  .badge { display:inline-block; font-size:12px; letter-spacing:.04em; text-transform:uppercase; color:var(--accent); border:1px solid var(--accent); border-radius:999px; padding:3px 10px; margin-bottom:16px; }
-  h1 { font-size:clamp(30px, 5vw, 44px); line-height:1.15; margin:0 0 14px; letter-spacing:-.01em; }
-  .lead { font-size:18px; color:var(--muted); max-width:620px; margin:0 0 28px; }
-  .btn { display:inline-block; padding:12px 20px; border-radius:10px; text-decoration:none; font-weight:600; font-size:15px; }
-  .btn.primary { background:var(--accent); color:#fff; }
-  .btn.ghost { border:1px solid var(--line); color:var(--ink); margin-left:8px; }
-  section { margin-top:64px; }
-  h2 { font-size:22px; margin:0 0 18px; }
-  .grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(240px,1fr)); gap:14px; }
-  .card { background:var(--panel); border:1px solid var(--line); border-radius:14px; padding:18px 20px; }
-  .card h3 { margin:0 0 6px; font-size:16px; }
-  .card p { margin:0; color:var(--muted); font-size:14.5px; }
-  .shot { border:1px solid var(--line); border-radius:14px; overflow:hidden; background:var(--panel); }
-  .shot img { display:block; width:100%; height:auto; }
-  .shot figcaption { padding:10px 16px; font-size:13px; color:var(--muted); border-top:1px solid var(--line); }
-  .price { display:grid; grid-template-columns:1fr auto; gap:20px; align-items:center; }
-  .price .num { font-size:40px; font-weight:800; line-height:1; }
-  .price .num small { font-size:14px; font-weight:500; color:var(--muted); display:block; margin-top:6px; }
-  ul.plain { list-style:none; padding:0; margin:12px 0 0; }
-  ul.plain li { padding-left:22px; position:relative; margin:6px 0; color:var(--muted); font-size:15px; }
-  ul.plain li::before { content:"✓"; position:absolute; left:0; color:var(--ok); font-weight:700; }
-  .steps { counter-reset:s; }
-  .steps .card { position:relative; padding-left:56px; }
-  .steps .card::before { counter-increment:s; content:counter(s); position:absolute; left:18px; top:18px; width:26px; height:26px; border-radius:50%; background:var(--accent); color:#fff; font-weight:700; font-size:13px; display:grid; place-items:center; }
-  .faq details { border-top:1px solid var(--line); padding:12px 0; }
-  .faq summary { cursor:pointer; font-weight:600; }
-  .faq p { color:var(--muted); margin:8px 0 0; font-size:15px; }
-  footer { margin-top:72px; font-size:13px; color:var(--muted); border-top:1px solid var(--line); padding-top:18px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px; }
-  @media (max-width:560px) { .price { grid-template-columns:1fr; } .btn.ghost { margin-left:0; margin-top:8px; } }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laravel Rescue Audit — Galih Nugroho</title>
+    <meta name="description" content="Know what's inside your Laravel app before you pay anyone to touch it. A fixed-price security and health audit with a written report in 24 hours.">
+
+    <link rel="icon" type="image/png" href="https://github.com/GSNugroho.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&display=swap" rel="stylesheet">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        display: ['Bricolage Grotesque', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+                    },
+                    colors: {
+                        paper: '#FAF6ED',
+                        night: '#141414',
+                        blue:  '#3B5BFD',
+                        sun:   '#FFD23F',
+                        muted: '#55524B'
+                    },
+                    boxShadow: {
+                        brutal:    '6px 6px 0 0 #141414',
+                        brutalSm:  '4px 4px 0 0 #141414',
+                        brutalXs:  '3px 3px 0 0 #141414'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        ::selection { background: #FFD23F; color: #141414; }
+        :focus-visible { outline: 3px solid #3B5BFD; outline-offset: 3px; }
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+            * { transition: none !important; }
+        }
+        .press { transition: transform .12s ease, box-shadow .12s ease; }
+        .press:hover  { transform: translate(2px, 2px); box-shadow: 4px 4px 0 0 #141414; }
+        .press:active { transform: translate(6px, 6px); box-shadow: 0 0 0 0 #141414; }
+        details > summary { list-style: none; cursor: pointer; }
+        details > summary::-webkit-details-marker { display: none; }
+        details[open] > summary .plus { transform: rotate(45deg); }
+    </style>
 </head>
-<body>
-<div class="wrap">
-  <nav>
-    <a href="/">← Galih Nugroho</a>
-    <a href="https://github.com/GSNugroho/laravel-rescue-audit">Open-source tool on GitHub</a>
-  </nav>
+<body class="bg-paper text-night font-display antialiased">
 
-  <span class="badge">Laravel Rescue Audit</span>
-  <h1>Know what's inside your Laravel app before you pay anyone to touch it.</h1>
-  <p class="lead">Inherited a half-finished app? Developer disappeared? Something broke after an update? In 24 hours you get a written report of what's actually there — and what it will cost to fix.</p>
-  <a class="btn primary" href="#order">Order an audit</a>
-  <a class="btn ghost" href="example-report.html">See a sample report</a>
+    <nav class="sticky top-0 bg-paper border-b-2 border-night z-50">
+        <div class="max-w-5xl mx-auto px-5 h-16 flex items-center justify-between gap-4">
+            <a href="/" class="font-extrabold tracking-tight text-lg">Galih<span class="text-blue">Nugroho</span></a>
+            <div class="hidden md:flex items-center gap-7 text-sm font-semibold">
+                <a href="#checks" class="hover:text-blue">What's checked</a>
+                <a href="#report" class="hover:text-blue">Sample report</a>
+                <a href="#price" class="hover:text-blue">Price</a>
+                <a href="#faq" class="hover:text-blue">FAQ</a>
+            </div>
+            <a href="#order" class="press bg-sun border-2 border-night shadow-brutalXs px-4 py-1.5 rounded-md text-sm font-bold">
+                Order an audit
+            </a>
+        </div>
+    </nav>
 
-  <section>
-    <h2>What gets checked</h2>
-    <div class="grid">
-      <div class="card"><h3>Open doors</h3><p>Write endpoints without authentication, token-only links, missing rate limiting on login and OTP routes.</p></div>
-      <div class="card"><h3>Data you didn't mean to expose</h3><p>Mass-assignment holes (<code>$guarded = []</code>, <code>create($request->all())</code>), debug mode and insecure cookie settings in production.</p></div>
-      <div class="card"><h3>Known vulnerabilities</h3><p>Packages with published CVEs, end-of-life Laravel and PHP versions, debugging tools shipped to production.</p></div>
-      <div class="card"><h3>Why it's slow</h3><p>N+1 queries in Blade and Livewire views, the usual reason a page that was fine with 10 records dies at 1,000.</p></div>
-      <div class="card"><h3>A manual read-through</h3><p>The scanner finds the obvious. I then read auth, payments and the API by hand — the places where the expensive bugs live.</p></div>
-      <div class="card"><h3>A number you can act on</h3><p>A 0–100 health score, each finding with severity and estimated fix hours, so you can decide: fix, rewrite, or walk away.</p></div>
+    <header class="px-5 max-w-5xl mx-auto pt-20 pb-16 md:pt-28 md:pb-24">
+        <p class="inline-block bg-night text-paper px-3 py-1.5 rounded-md text-xs font-bold -rotate-2 mb-7">
+            Laravel Rescue Audit · fixed price · 24 hours
+        </p>
+
+        <h1 class="text-5xl sm:text-6xl md:text-7xl font-extrabold tracking-tight leading-[0.98] mb-8">
+            Know what's inside your<br>
+            Laravel app <span class="relative inline-block">before<span class="absolute left-0 right-0 bottom-1 md:bottom-2 h-3 md:h-5 bg-sun -z-10 -rotate-1"></span></span><br>
+            you pay anyone to touch it.
+        </h1>
+
+        <p class="text-lg md:text-xl text-muted max-w-2xl leading-relaxed mb-10 font-medium">
+            Inherited a half-finished app? Developer disappeared? Something broke
+            after an update? In 24 hours you get a written report of what's actually
+            in the code — and what it will cost to fix.
+        </p>
+
+        <div class="flex flex-wrap items-center gap-4">
+            <a href="#order" class="press bg-blue text-white border-2 border-night shadow-brutal px-7 py-3.5 rounded-lg font-bold">
+                Order an audit — $99
+            </a>
+            <a href="example-report.html" target="_blank" rel="noopener" class="press bg-paper border-2 border-night shadow-brutal px-7 py-3.5 rounded-lg font-bold">
+                See a sample report ↗
+            </a>
+        </div>
+    </header>
+
+    <div class="bg-night text-sun border-y-2 border-night overflow-hidden -rotate-1 scale-[1.02]" aria-hidden="true">
+        <p class="whitespace-nowrap py-3 text-sm font-bold tracking-wide">
+            UNPROTECTED ROUTES ✦ MASS ASSIGNMENT ✦ KNOWN CVEs ✦ N+1 QUERIES ✦ DEBUG IN PRODUCTION ✦ EOL VERSIONS ✦ UNPROTECTED ROUTES ✦ MASS ASSIGNMENT ✦ KNOWN CVEs ✦ N+1 QUERIES ✦ DEBUG IN PRODUCTION ✦ EOL VERSIONS
+        </p>
     </div>
-  </section>
 
-  <section>
-    <h2>What the report looks like</h2>
-    <figure class="shot" style="margin:0">
-      <a href="example-report.html"><img src="report-preview.png" alt="Sample Rescue Audit report: score ring, severity counts and a list of findings with affected routes and files"></a>
-      <figcaption>Single HTML file, prints to PDF, no login needed. Built on my open-source scanner <a href="https://github.com/GSNugroho/laravel-rescue-audit">laravel-rescue-audit</a>.</figcaption>
-    </figure>
-  </section>
+    <section id="checks" class="py-20 md:py-28 px-5 max-w-5xl mx-auto">
+        <div class="grid md:grid-cols-3 gap-8 items-start mb-12">
+            <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight">What gets<br class="hidden md:block"> checked</h2>
+            <p class="md:col-span-2 text-base md:text-lg leading-relaxed font-medium">
+                An automated scan finds the obvious. Then I read the parts where the
+                expensive bugs live — auth, payments, the API — by hand. You get both
+                in one report.
+            </p>
+        </div>
 
-  <section id="order">
-    <h2>Price</h2>
-    <div class="card price">
-      <div>
-        <strong>Rescue Audit — one Laravel codebase</strong>
-        <ul class="plain">
-          <li>Written HTML report within 24 hours of repo access</li>
-          <li>Top-3 priorities and a suggested order of fixes, in plain English</li>
-          <li>Estimated hours per fix, so you can budget before committing</li>
-          <li>7 days of follow-up questions by chat or email</li>
-          <li>Report is yours — hand it to any developer</li>
-        </ul>
-      </div>
-      <div class="num">$99<small>introductory price · usually $199</small></div>
-    </div>
-    <p style="color:var(--muted);font-size:14px;margin-top:10px">Need the fixes done too? After the audit we continue at an hourly rate with the report as the task list — no guessing, no open-ended "let me look at it".</p>
-  </section>
+        <div class="grid md:grid-cols-2 gap-6">
+            <div class="border-2 border-night rounded-xl shadow-brutalSm p-7 bg-paper">
+                <h3 class="font-extrabold text-xl mb-2">Open doors</h3>
+                <p class="text-muted text-sm font-medium leading-relaxed">Write endpoints without authentication, links protected only by a URL token, no rate limiting on login and OTP routes.</p>
+            </div>
+            <div class="border-2 border-night rounded-xl shadow-brutalSm p-7 bg-paper">
+                <h3 class="font-extrabold text-xl mb-2">Data you didn't mean to expose</h3>
+                <p class="text-muted text-sm font-medium leading-relaxed">Mass-assignment holes (<code class="font-bold">$guarded = []</code>, <code class="font-bold">create($request->all())</code>), debug mode and insecure cookies in production.</p>
+            </div>
+            <div class="border-2 border-night rounded-xl shadow-brutalSm p-7 bg-sun">
+                <h3 class="font-extrabold text-xl mb-2">Known vulnerabilities</h3>
+                <p class="text-night/70 text-sm font-medium leading-relaxed">Packages with published CVEs, end-of-life Laravel and PHP versions, debugging tools shipped to production.</p>
+            </div>
+            <div class="border-2 border-night rounded-xl shadow-brutalSm p-7 bg-paper">
+                <h3 class="font-extrabold text-xl mb-2">Why it's slow</h3>
+                <p class="text-muted text-sm font-medium leading-relaxed">N+1 queries in Blade and Livewire views — the usual reason a page that was fine with 10 records dies at 1,000.</p>
+            </div>
+            <div class="border-2 border-night rounded-xl shadow-brutalSm p-7 bg-paper">
+                <h3 class="font-extrabold text-xl mb-2">A manual read-through</h3>
+                <p class="text-muted text-sm font-medium leading-relaxed">Auth flow, payment handling and the API contract, read line by line. Scanners don't catch a webhook that trusts its caller.</p>
+            </div>
+            <div class="border-2 border-night rounded-xl shadow-brutalSm p-7 bg-paper">
+                <h3 class="font-extrabold text-xl mb-2">A number you can act on</h3>
+                <p class="text-muted text-sm font-medium leading-relaxed">A 0–100 health score and estimated fix hours per finding, so you can decide: fix, rewrite, or walk away.</p>
+            </div>
+        </div>
+    </section>
 
-  <section>
-    <h2>How it works</h2>
-    <div class="grid steps">
-      <div class="card"><h3>Send repo access</h3><p>Read-only GitHub/GitLab/Bitbucket invite, or a zip. Nothing is deployed, nothing leaves my machine.</p></div>
-      <div class="card"><h3>I audit</h3><p>Automated scan plus a manual read of the critical paths. Usually same day.</p></div>
-      <div class="card"><h3>You get the report</h3><p>HTML + a short written summary. Ask anything about it for the next 7 days.</p></div>
-    </div>
-  </section>
+    <section id="report" class="py-20 md:py-28 px-5 bg-blue border-y-2 border-night">
+        <div class="max-w-5xl mx-auto">
+            <div class="mb-12 max-w-2xl">
+                <h2 class="text-4xl md:text-5xl font-extrabold tracking-tight text-white mb-4">What the report looks like</h2>
+                <p class="text-white/85 font-medium text-lg">One HTML file. Prints to PDF. No login, no dashboard, nothing to install. Yours to hand to any developer.</p>
+            </div>
 
-  <section class="faq">
-    <h2>Questions</h2>
-    <details><summary>Do you need production access or the database?</summary><p>No. The code and the <code>.env.example</code> are enough. If you also share the production <code>.env</code> values (secrets redacted), the config check becomes more accurate.</p></details>
-    <details><summary>Which Laravel versions?</summary><p>Laravel 5 through 12. Older apps usually get a lower score, which is useful information in itself when you're deciding whether to upgrade or rebuild.</p></details>
-    <details><summary>Is my code kept confidential?</summary><p>Yes. Access is removed when the audit is done and I'm happy to sign a short NDA. The report is never published or reused.</p></details>
-    <details><summary>Can I just run the tool myself?</summary><p>Absolutely — it's free and open source. The audit adds the manual review, the prioritisation and someone to ask.</p></details>
-  </section>
+            <article class="bg-paper border-2 border-night rounded-xl shadow-brutal overflow-hidden">
+                <a href="example-report.html" target="_blank" rel="noopener" class="block border-b-2 border-night">
+                    <img src="report-preview.png" alt="Sample Rescue Audit report: score ring, severity counts and a list of findings with affected routes and files" class="block w-full h-auto">
+                </a>
+                <div class="p-7 md:flex md:items-center md:justify-between md:gap-10">
+                    <p class="text-muted font-medium text-sm leading-relaxed mb-5 md:mb-0 max-w-xl">
+                        Generated by my open-source scanner, then annotated by hand with the three things to fix first.
+                    </p>
+                    <div class="flex flex-wrap gap-3 shrink-0">
+                        <a href="example-report.html" target="_blank" rel="noopener" class="press inline-block bg-blue text-white border-2 border-night shadow-brutalSm px-5 py-2.5 rounded-lg text-sm font-bold">Open sample ↗</a>
+                        <a href="https://github.com/GSNugroho/laravel-rescue-audit" target="_blank" rel="noopener" class="press inline-block bg-paper border-2 border-night shadow-brutalSm px-5 py-2.5 rounded-lg text-sm font-bold">Scanner on GitHub ↗</a>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </section>
 
-  <section id="contact">
-    <h2>Order</h2>
-    <p style="color:var(--muted)">Email <a href="mailto:hello@example.com">hello@example.com</a> with a link to the repo (or a short description of the app), or hire me through <a href="#">Upwork</a> · <a href="#">Freelancer</a>. I reply within a few hours, Indonesia time.</p>
-  </section>
+    <section id="price" class="py-20 md:py-28 px-5 max-w-5xl mx-auto">
+        <h2 class="text-4xl md:text-5xl font-extrabold tracking-tight mb-12">One price. No surprises.</h2>
 
-  <footer>
-    <span>© 2026 Galih Nugroho · Made in Solo, Indonesia</span>
-    <span>6 years Laravel · <a href="/">portfolio</a></span>
-  </footer>
-</div>
+        <article class="bg-paper border-2 border-night rounded-xl shadow-brutal p-7 md:p-9">
+            <div class="md:flex md:items-start md:justify-between md:gap-10">
+                <div class="max-w-2xl">
+                    <div class="flex flex-wrap items-center gap-2 mb-5">
+                        <span class="bg-night text-paper px-2.5 py-1 rounded-md text-[11px] font-bold">Rescue Audit</span>
+                        <span class="bg-sun border-2 border-night px-2.5 py-0.5 rounded-md text-[11px] font-bold">● Introductory price</span>
+                    </div>
+                    <h3 class="text-2xl md:text-3xl font-extrabold tracking-tight mb-4">One Laravel codebase, any version</h3>
+                    <ul class="space-y-2.5 text-muted font-medium text-sm md:text-base">
+                        <li class="flex gap-3"><span class="font-extrabold text-night">✓</span> Written HTML report within 24 hours of repo access</li>
+                        <li class="flex gap-3"><span class="font-extrabold text-night">✓</span> Top-3 priorities and a suggested order of fixes, in plain English</li>
+                        <li class="flex gap-3"><span class="font-extrabold text-night">✓</span> Estimated hours per fix, so you can budget before committing</li>
+                        <li class="flex gap-3"><span class="font-extrabold text-night">✓</span> 7 days of follow-up questions by chat or email</li>
+                        <li class="flex gap-3"><span class="font-extrabold text-night">✓</span> The report is yours — hand it to any developer</li>
+                    </ul>
+                </div>
+                <div class="shrink-0 mt-8 md:mt-0 md:text-right">
+                    <p class="text-6xl font-extrabold tracking-tight leading-none">$99</p>
+                    <p class="text-muted text-sm font-bold mt-2 mb-6">usually $199 · first clients only</p>
+                    <a href="#order" class="press inline-block bg-blue text-white border-2 border-night shadow-brutalSm px-5 py-2.5 rounded-lg text-sm font-bold">Order an audit</a>
+                </div>
+            </div>
+        </article>
+
+        <p class="text-muted font-medium text-sm mt-6 max-w-2xl">
+            Need the fixes done too? After the audit we continue at an hourly rate with the
+            report as the task list — no guessing, no open-ended "let me look at it".
+        </p>
+    </section>
+
+    <section class="py-20 md:py-28 px-5 bg-sun border-y-2 border-night">
+        <div class="max-w-5xl mx-auto">
+            <h2 class="text-4xl md:text-5xl font-extrabold tracking-tight mb-12">How it works</h2>
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="border-2 border-night rounded-xl shadow-brutalSm p-7 bg-paper">
+                    <p class="inline-block bg-night text-paper w-9 h-9 rounded-md font-extrabold grid place-items-center mb-4">1</p>
+                    <h3 class="font-extrabold text-xl mb-2">Send repo access</h3>
+                    <p class="text-muted text-sm font-medium leading-relaxed">Read-only GitHub / GitLab / Bitbucket invite, or a zip. Nothing is deployed, nothing leaves my machine.</p>
+                </div>
+                <div class="border-2 border-night rounded-xl shadow-brutalSm p-7 bg-paper">
+                    <p class="inline-block bg-night text-paper w-9 h-9 rounded-md font-extrabold grid place-items-center mb-4">2</p>
+                    <h3 class="font-extrabold text-xl mb-2">I audit</h3>
+                    <p class="text-muted text-sm font-medium leading-relaxed">Automated scan plus a manual read of the critical paths. Usually same day.</p>
+                </div>
+                <div class="border-2 border-night rounded-xl shadow-brutalSm p-7 bg-paper">
+                    <p class="inline-block bg-night text-paper w-9 h-9 rounded-md font-extrabold grid place-items-center mb-4">3</p>
+                    <h3 class="font-extrabold text-xl mb-2">You get the report</h3>
+                    <p class="text-muted text-sm font-medium leading-relaxed">HTML plus a short written summary. Ask anything about it for the next 7 days.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="faq" class="py-20 md:py-28 px-5 max-w-5xl mx-auto">
+        <h2 class="text-4xl md:text-5xl font-extrabold tracking-tight mb-10">Questions</h2>
+        <div class="border-2 border-night rounded-xl shadow-brutalSm bg-paper divide-y-2 divide-night">
+            <details class="p-6">
+                <summary class="flex items-center justify-between gap-4 font-extrabold text-lg">Do you need production access or the database?<span class="plus text-2xl leading-none transition-transform">+</span></summary>
+                <p class="text-muted font-medium mt-3 leading-relaxed">No. The code and <code class="font-bold">.env.example</code> are enough. If you also share production <code class="font-bold">.env</code> values with secrets redacted, the config check becomes more accurate.</p>
+            </details>
+            <details class="p-6">
+                <summary class="flex items-center justify-between gap-4 font-extrabold text-lg">Which Laravel versions?<span class="plus text-2xl leading-none transition-transform">+</span></summary>
+                <p class="text-muted font-medium mt-3 leading-relaxed">Laravel 5 through 12. Older apps usually score lower, which is useful information when you're deciding whether to upgrade or rebuild.</p>
+            </details>
+            <details class="p-6">
+                <summary class="flex items-center justify-between gap-4 font-extrabold text-lg">Is my code kept confidential?<span class="plus text-2xl leading-none transition-transform">+</span></summary>
+                <p class="text-muted font-medium mt-3 leading-relaxed">Yes. Access is removed when the audit is done and I'm happy to sign a short NDA. The report is never published or reused.</p>
+            </details>
+            <details class="p-6">
+                <summary class="flex items-center justify-between gap-4 font-extrabold text-lg">Can I just run the scanner myself?<span class="plus text-2xl leading-none transition-transform">+</span></summary>
+                <p class="text-muted font-medium mt-3 leading-relaxed">Absolutely — it's free and open source. The audit adds the manual review, the prioritisation, and someone to ask.</p>
+            </details>
+        </div>
+    </section>
+
+    <footer id="order" class="bg-night text-paper border-t-2 border-night py-20 md:py-28 px-5">
+        <div class="max-w-5xl mx-auto">
+            <p class="inline-block bg-sun text-night px-3 py-1.5 rounded-md text-xs font-bold rotate-1 mb-7">Order</p>
+            <h2 class="text-4xl md:text-6xl font-extrabold tracking-tight mb-5 max-w-2xl leading-[1.02]">Send me the repo. Get the truth back tomorrow.</h2>
+            <p class="text-paper/70 mb-10 max-w-xl leading-relaxed font-medium">
+                Email a link to the repo (or a short description of the app) and I'll confirm
+                within a few hours, Indonesia time. Prefer a platform with escrow? Hire me on Upwork or Freelancer.
+            </p>
+
+            <div class="flex flex-wrap gap-4 text-sm font-bold">
+                <!-- TODO: ganti email dan dua href="#" di bawah -->
+                <a href="mailto:hello@example.com?subject=Laravel%20Rescue%20Audit" class="press bg-sun text-night border-2 border-paper shadow-[4px_4px_0_0_#FAF6ED] px-6 py-3 rounded-lg">Email me ↗</a>
+                <a href="#" class="border-2 border-paper/40 px-6 py-3 rounded-lg hover:border-paper transition-colors">Upwork</a>
+                <a href="#" class="border-2 border-paper/40 px-6 py-3 rounded-lg hover:border-paper transition-colors">Freelancer</a>
+                <a href="https://github.com/GSNugroho/laravel-rescue-audit" target="_blank" rel="noopener" class="border-2 border-paper/40 px-6 py-3 rounded-lg hover:border-paper transition-colors">GitHub ↗</a>
+            </div>
+
+            <p class="mt-20 text-xs text-paper/40 font-medium">© 2026 Galih Nugroho · Made in Solo, Indonesia · <a href="/" class="underline">Back to portfolio</a></p>
+        </div>
+    </footer>
+
 </body>
 </html>

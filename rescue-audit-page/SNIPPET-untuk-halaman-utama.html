@@ -1,0 +1,35 @@
+<!--
+  Tempel blok ini di index.html halaman utama, TEPAT SEBELUM
+  <section id="stack" ...> (setelah section #projects yang biru).
+  Kelas-kelasnya memakai config Tailwind yang sudah ada di halamanmu.
+-->
+<section id="audit" class="py-20 md:py-28 px-5 max-w-5xl mx-auto">
+    <article class="bg-sun border-2 border-night rounded-xl shadow-brutal p-7 md:p-9">
+        <div class="md:flex md:items-start md:justify-between md:gap-10">
+            <div class="max-w-2xl">
+                <div class="flex flex-wrap items-center gap-2 mb-5">
+                    <span class="bg-night text-paper px-2.5 py-1 rounded-md text-[11px] font-bold">Service</span>
+                    <span class="bg-paper border-2 border-night px-2.5 py-0.5 rounded-md text-[11px] font-bold">Fixed price · 24 h</span>
+                </div>
+                <h2 class="text-2xl md:text-3xl font-extrabold tracking-tight mb-3">Laravel Rescue Audit</h2>
+                <p class="text-night/70 leading-relaxed font-medium mb-6">
+                    Inherited a half-finished Laravel app, or something broke after an
+                    update? Send me the repo and in 24 hours you get a written report:
+                    unprotected routes, known CVEs, N+1 queries, risky config — with a
+                    0–100 score and estimated fix hours. Built on my open-source scanner.
+                </p>
+            </div>
+            <div class="shrink-0">
+                <p class="text-5xl font-extrabold tracking-tight leading-none mb-1">$99</p>
+                <p class="text-night/70 text-xs font-bold mb-6">introductory · usually $199</p>
+                <a href="/laravel-rescue-audit/" class="press inline-block bg-blue text-white border-2 border-night shadow-brutalSm px-5 py-2.5 rounded-lg text-sm font-bold">
+                    See what's checked ↗
+                </a>
+            </div>
+        </div>
+    </article>
+</section>
+
+<!-- Opsional: tambahkan juga tautan di nav halaman utama, setelah "Toolbox":
+<a href="#audit" class="hover:text-blue">Audit</a>
+-->
