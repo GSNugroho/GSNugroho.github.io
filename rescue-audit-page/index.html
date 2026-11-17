@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Laravel Rescue Audit — Galih Nugroho</title>
+<meta name="description" content="Know what's inside your Laravel app before you pay anyone to touch it. A fixed-price security and health audit with a written report in 24 hours.">
+<style>
+  :root { --bg:#0b1020; --panel:#121a30; --ink:#e8ecf5; --muted:#9aa5bf; --line:#22304f; --accent:#f97316; --ok:#22c55e; --bad:#ef4444; }
+  @media (prefers-color-scheme: light) { :root { --bg:#f7f8fb; --panel:#ffffff; --ink:#0f172a; --muted:#5b6478; --line:#e3e7ef; } }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--ink); font:16px/1.6 ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+  a { color:inherit; }
+  .wrap { max-width:880px; margin:0 auto; padding:40px 20px 72px; }
+  nav { display:flex; justify-content:space-between; align-items:center; font-size:14px; color:var(--muted); margin-bottom:56px; }
+  nav a { text-decoration:none; }
+  nav a:hover { color:var(--ink); }
+  .badge { display:inline-block; font-size:12px; letter-spacing:.04em; text-transform:uppercase; color:var(--accent); border:1px solid var(--accent); border-radius:999px; padding:3px 10px; margin-bottom:16px; }
+  h1 { font-size:clamp(30px, 5vw, 44px); line-height:1.15; margin:0 0 14px; letter-spacing:-.01em; }
+  .lead { font-size:18px; color:var(--muted); max-width:620px; margin:0 0 28px; }
+  .btn { display:inline-block; padding:12px 20px; border-radius:10px; text-decoration:none; font-weight:600; font-size:15px; }
+  .btn.primary { background:var(--accent); color:#fff; }
+  .btn.ghost { border:1px solid var(--line); color:var(--ink); margin-left:8px; }
+  section { margin-top:64px; }
+  h2 { font-size:22px; margin:0 0 18px; }
+  .grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(240px,1fr)); gap:14px; }
+  .card { background:var(--panel); border:1px solid var(--line); border-radius:14px; padding:18px 20px; }
+  .card h3 { margin:0 0 6px; font-size:16px; }
+  .card p { margin:0; color:var(--muted); font-size:14.5px; }
+  .shot { border:1px solid var(--line); border-radius:14px; overflow:hidden; background:var(--panel); }
+  .shot img { display:block; width:100%; height:auto; }
+  .shot figcaption { padding:10px 16px; font-size:13px; color:var(--muted); border-top:1px solid var(--line); }
+  .price { display:grid; grid-template-columns:1fr auto; gap:20px; align-items:center; }
+  .price .num { font-size:40px; font-weight:800; line-height:1; }
+  .price .num small { font-size:14px; font-weight:500; color:var(--muted); display:block; margin-top:6px; }
+  ul.plain { list-style:none; padding:0; margin:12px 0 0; }
+  ul.plain li { padding-left:22px; position:relative; margin:6px 0; color:var(--muted); font-size:15px; }
+  ul.plain li::before { content:"✓"; position:absolute; left:0; color:var(--ok); font-weight:700; }
+  .steps { counter-reset:s; }
+  .steps .card { position:relative; padding-left:56px; }
+  .steps .card::before { counter-increment:s; content:counter(s); position:absolute; left:18px; top:18px; width:26px; height:26px; border-radius:50%; background:var(--accent); color:#fff; font-weight:700; font-size:13px; display:grid; place-items:center; }
+  .faq details { border-top:1px solid var(--line); padding:12px 0; }
+  .faq summary { cursor:pointer; font-weight:600; }
+  .faq p { color:var(--muted); margin:8px 0 0; font-size:15px; }
+  footer { margin-top:72px; font-size:13px; color:var(--muted); border-top:1px solid var(--line); padding-top:18px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px; }
+  @media (max-width:560px) { .price { grid-template-columns:1fr; } .btn.ghost { margin-left:0; margin-top:8px; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav>
+    <a href="/">← Galih Nugroho</a>
+    <a href="https://github.com/GSNugroho/laravel-rescue-audit">Open-source tool on GitHub</a>
+  </nav>
+
+  <span class="badge">Laravel Rescue Audit</span>
+  <h1>Know what's inside your Laravel app before you pay anyone to touch it.</h1>
+  <p class="lead">Inherited a half-finished app? Developer disappeared? Something broke after an update? In 24 hours you get a written report of what's actually there — and what it will cost to fix.</p>
+  <a class="btn primary" href="#order">Order an audit</a>
+  <a class="btn ghost" href="example-report.html">See a sample report</a>
+
+  <section>
+    <h2>What gets checked</h2>
+    <div class="grid">
+      <div class="card"><h3>Open doors</h3><p>Write endpoints without authentication, token-only links, missing rate limiting on login and OTP routes.</p></div>
+      <div class="card"><h3>Data you didn't mean to expose</h3><p>Mass-assignment holes (<code>$guarded = []</code>, <code>create($request->all())</code>), debug mode and insecure cookie settings in production.</p></div>
+      <div class="card"><h3>Known vulnerabilities</h3><p>Packages with published CVEs, end-of-life Laravel and PHP versions, debugging tools shipped to production.</p></div>
+      <div class="card"><h3>Why it's slow</h3><p>N+1 queries in Blade and Livewire views, the usual reason a page that was fine with 10 records dies at 1,000.</p></div>
+      <div class="card"><h3>A manual read-through</h3><p>The scanner finds the obvious. I then read auth, payments and the API by hand — the places where the expensive bugs live.</p></div>
+      <div class="card"><h3>A number you can act on</h3><p>A 0–100 health score, each finding with severity and estimated fix hours, so you can decide: fix, rewrite, or walk away.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>What the report looks like</h2>
+    <figure class="shot" style="margin:0">
+      <a href="example-report.html"><img src="report-preview.png" alt="Sample Rescue Audit report: score ring, severity counts and a list of findings with affected routes and files"></a>
+      <figcaption>Single HTML file, prints to PDF, no login needed. Built on my open-source scanner <a href="https://github.com/GSNugroho/laravel-rescue-audit">laravel-rescue-audit</a>.</figcaption>
+    </figure>
+  </section>
+
+  <section id="order">
+    <h2>Price</h2>
+    <div class="card price">
+      <div>
+        <strong>Rescue Audit — one Laravel codebase</strong>
+        <ul class="plain">
+          <li>Written HTML report within 24 hours of repo access</li>
+          <li>Top-3 priorities and a suggested order of fixes, in plain English</li>
+          <li>Estimated hours per fix, so you can budget before committing</li>
+          <li>7 days of follow-up questions by chat or email</li>
+          <li>Report is yours — hand it to any developer</li>
+        </ul>
+      </div>
+      <div class="num">$99<small>introductory price · usually $199</small></div>
+    </div>
+    <p style="color:var(--muted);font-size:14px;margin-top:10px">Need the fixes done too? After the audit we continue at an hourly rate with the report as the task list — no guessing, no open-ended "let me look at it".</p>
+  </section>
+
+  <section>
+    <h2>How it works</h2>
+    <div class="grid steps">
+      <div class="card"><h3>Send repo access</h3><p>Read-only GitHub/GitLab/Bitbucket invite, or a zip. Nothing is deployed, nothing leaves my machine.</p></div>
+      <div class="card"><h3>I audit</h3><p>Automated scan plus a manual read of the critical paths. Usually same day.</p></div>
+      <div class="card"><h3>You get the report</h3><p>HTML + a short written summary. Ask anything about it for the next 7 days.</p></div>
+    </div>
+  </section>
+
+  <section class="faq">
+    <h2>Questions</h2>
+    <details><summary>Do you need production access or the database?</summary><p>No. The code and the <code>.env.example</code> are enough. If you also share the production <code>.env</code> values (secrets redacted), the config check becomes more accurate.</p></details>
+    <details><summary>Which Laravel versions?</summary><p>Laravel 5 through 12. Older apps usually get a lower score, which is useful information in itself when you're deciding whether to upgrade or rebuild.</p></details>
+    <details><summary>Is my code kept confidential?</summary><p>Yes. Access is removed when the audit is done and I'm happy to sign a short NDA. The report is never published or reused.</p></details>
+    <details><summary>Can I just run the tool myself?</summary><p>Absolutely — it's free and open source. The audit adds the manual review, the prioritisation and someone to ask.</p></details>
+  </section>
+
+  <section id="contact">
+    <h2>Order</h2>
+    <p style="color:var(--muted)">Email <a href="mailto:hello@example.com">hello@example.com</a> with a link to the repo (or a short description of the app), or hire me through <a href="#">Upwork</a> · <a href="#">Freelancer</a>. I reply within a few hours, Indonesia time.</p>
+  </section>
+
+  <footer>
+    <span>© 2026 Galih Nugroho · Made in Solo, Indonesia</span>
+    <span>6 years Laravel · <a href="/">portfolio</a></span>
+  </footer>
+</div>
+</body>
+</html>

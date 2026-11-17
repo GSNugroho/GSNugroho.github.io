@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rescue Audit — TokoKita (takeover demo)</title>
+<style>
+  :root { --bg:#f8fafc; --card:#fff; --ink:#0f172a; --muted:#64748b; --line:#e2e8f0; }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--bg); color:var(--ink); font:15px/1.55 ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+  .wrap { max-width: 960px; margin: 0 auto; padding: 32px 20px 64px; }
+  header { display:flex; flex-wrap:wrap; gap:24px; align-items:center; justify-content:space-between; margin-bottom:28px; }
+  h1 { font-size: 24px; margin:0 0 4px; }
+  .sub { color:var(--muted); font-size:13px; }
+  .score { display:flex; align-items:center; gap:16px; }
+  .ring { width:92px; height:92px; border-radius:50%; display:grid; place-items:center; font-size:30px; font-weight:700; color:#fff; background: conic-gradient(#b91c1c 18deg, #e2e8f0 0); position:relative; }
+  .ring span { position:absolute; inset:8px; border-radius:50%; background:var(--card); display:grid; place-items:center; color:#b91c1c; }
+  .kpis { display:grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap:12px; margin-bottom:28px; }
+  .kpi { background:var(--card); border:1px solid var(--line); border-radius:10px; padding:12px 14px; }
+  .kpi b { display:block; font-size:22px; }
+  .kpi small { color:var(--muted); }
+  .checks { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:28px; }
+  .chip { font-size:12px; padding:4px 10px; border-radius:999px; border:1px solid var(--line); background:var(--card); }
+  .chip.ok { border-color:#bbf7d0; background:#f0fdf4; color:#166534; }
+  .chip.bad { border-color:#fecaca; background:#fef2f2; color:#991b1b; }
+  .finding { background:var(--card); border:1px solid var(--line); border-left:5px solid var(--sc); border-radius:10px; padding:16px 18px; margin-bottom:14px; }
+  .finding h2 { font-size:16px; margin:0 0 6px; display:flex; gap:10px; align-items:center; flex-wrap:wrap; }
+  .badge { font-size:11px; font-weight:700; letter-spacing:.04em; text-transform:uppercase; color:#fff; background:var(--sc); padding:2px 8px; border-radius:6px; }
+  .meta { color:var(--muted); font-size:12px; }
+  .finding p { margin:8px 0; }
+  .items { margin:8px 0 0; padding:0; list-style:none; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size:12.5px; }
+  .items li { padding:3px 8px; border-radius:4px; background:#f1f5f9; margin:3px 0; overflow-wrap:anywhere; }
+  details summary { cursor:pointer; color:var(--muted); font-size:12px; margin-top:6px; }
+  footer { margin-top:40px; color:var(--muted); font-size:12px; border-top:1px solid var(--line); padding-top:14px; }
+  .empty { background:#f0fdf4; border:1px solid #bbf7d0; color:#166534; padding:18px; border-radius:10px; }
+  @media print { body { background:#fff; } .finding { break-inside: avoid; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div>
+      <h1>Rescue Audit — TokoKita (takeover demo)</h1>
+      <div class="sub">Laravel 8.83.27 · PHP 8.1.29 · env <code>production</code> · generated 17 Nov 2026 02:47</div>
+    </div>
+    <div class="score">
+      <div class="ring"><span>5</span></div>
+      <div>
+        <div style="font-size:18px;font-weight:700">Grade F</div>
+        <div class="sub">Health &amp; security score, 0–100</div>
+        <div class="sub">Estimated fix time: <b>32.8 h</b></div>
+      </div>
+    </div>
+  </header>
+
+  <div class="kpis">
+          <div class="kpi"><b style="color:#b91c1c">3</b><small>Critical</small></div>
+          <div class="kpi"><b style="color:#c2410c">3</b><small>High</small></div>
+          <div class="kpi"><b style="color:#1d4ed8">3</b><small>Medium</small></div>
+          <div class="kpi"><b style="color:#6b7280">1</b><small>Low</small></div>
+        <div class="kpi"><b>5</b><small>Checks run</small></div>
+  </div>
+
+  <div class="checks">
+          <span class="chip bad" title="Eloquent models open to mass assignment.">! models</span>
+          <span class="chip bad" title="End-of-life framework/PHP versions and known security advisories.">! deps</span>
+          <span class="chip bad" title="Blade loops that access relations which are never eager-loaded.">! nplus1</span>
+          <span class="chip bad" title="">! routes</span>
+          <span class="chip bad" title="">! config</span>
+      </div>
+
+      <section class="finding" style="--sc: #b91c1c">
+      <h2><span class="badge">critical</span> Laravel v8.83.27 no longer receives security fixes (ended 2023-01-24)</h2>
+      <div class="meta">check: deps · estimated fix: 16 h</div>
+      <p>Known vulnerabilities in the framework will not be patched. Plan an upgrade path (Shift or manual) one major at a time; budget grows with each major skipped.</p>
+          </section>
+      <section class="finding" style="--sc: #b91c1c">
+      <h2><span class="badge">critical</span> 8 write route(s) accept POST/PUT/PATCH/DELETE without any auth middleware</h2>
+      <div class="meta">check: routes · estimated fix: 12 h</div>
+      <p>Anyone on the internet can call these endpoints. Unless they are intentionally public (webhooks, contact forms), wrap them in Route::middleware(&#039;auth&#039;) or auth:sanctum. Intentionally public routes can be listed in config/rescue-audit.php → public_routes.</p>
+                        <ul class="items">
+            <li>POST /orders</li><li>POST /orders/{order}/pay</li><li>DELETE /orders/{order}</li><li>POST /api/v1/webhooks/midtrans</li><li>PUT /profile</li><li>POST /comments</li>          </ul>
+          <details>
+            <summary>Show 2 more</summary>
+            <ul class="items">
+              <li>POST /upload</li><li>DELETE /comments/{comment}</li>            </ul>
+          </details>
+                  </section>
+      <section class="finding" style="--sc: #b91c1c">
+      <h2><span class="badge">critical</span> APP_DEBUG is enabled in production</h2>
+      <div class="meta">check: config · estimated fix: 0.25 h</div>
+      <p>Debug mode leaks stack traces, environment variables and database credentials on any error page. Set APP_DEBUG=false in the production .env.</p>
+          </section>
+      <section class="finding" style="--sc: #c2410c">
+      <h2><span class="badge">high</span> 1 model(s) set $guarded = [] (every column is mass-assignable)</h2>
+      <div class="meta">check: models · estimated fix: 1 h</div>
+      <p>Combined with Model::create($request-&gt;all()) a user can set is_admin, role, user_id or price from the form. Replace with an explicit $fillable list, or always pass $request-&gt;validated() with only the intended keys.</p>
+                        <ul class="items">
+            <li>app/Models/Post.php</li>          </ul>
+                  </section>
+      <section class="finding" style="--sc: #c2410c">
+      <h2><span class="badge">high</span> 1 file(s) pass $request-&gt;all() straight into create()/update()/fill()</h2>
+      <div class="meta">check: models · estimated fix: 1 h</div>
+      <p>Whatever the client posts ends up in the database if the model allows it. Use $request-&gt;validated() or $request-&gt;only([...]).</p>
+                        <ul class="items">
+            <li>app/Http/Controllers/PostController.php (1x)</li>          </ul>
+                  </section>
+      <section class="finding" style="--sc: #c2410c">
+      <h2><span class="badge">high</span> Session cookie is not marked Secure (SESSION_SECURE_COOKIE)</h2>
+      <div class="meta">check: config · estimated fix: 0.25 h</div>
+      <p>Without the Secure flag the session cookie can be sent over plain HTTP and intercepted. Set SESSION_SECURE_COOKIE=true once the site is served over HTTPS.</p>
+          </section>
+      <section class="finding" style="--sc: #1d4ed8">
+      <h2><span class="badge">medium</span> 1 debugging package(s) are in require (not require-dev)</h2>
+      <div class="meta">check: deps · estimated fix: 0.5 h</div>
+      <p>They ship to production and some expose routes (debugbar, telescope) that can leak data. Move them to require-dev and guard them with a gate.</p>
+                        <ul class="items">
+            <li>barryvdh/laravel-debugbar</li>          </ul>
+                  </section>
+      <section class="finding" style="--sc: #1d4ed8">
+      <h2><span class="badge">medium</span> 1 view(s) access a relation inside a loop that is never eager-loaded</h2>
+      <div class="meta">check: nplus1 · estimated fix: 0.5 h</div>
+      <p>Each iteration fires an extra query, so a page with 100 rows runs 100+ queries. Add -&gt;with(&#039;relation&#039;) to the query in the controller, or $collection-&gt;load(...). Verify with Laravel Debugbar or Model::preventLazyLoading() in local. (Heuristic: the relation name was not found in any with()/load() call under app/.)</p>
+                        <ul class="items">
+            <li>resources/views/posts/index.blade.php → $post-&gt;author, $post-&gt;comments, $comment-&gt;user</li>          </ul>
+                  </section>
+      <section class="finding" style="--sc: #1d4ed8">
+      <h2><span class="badge">medium</span> 41 of 44 route(s) have no rate limiting (throttle)</h2>
+      <div class="meta">check: routes · estimated fix: 1 h</div>
+      <p>Without throttle middleware, login forms, OTP endpoints and search pages can be brute-forced or used to exhaust the server. Apply throttle:60,1 (or a named limiter via RateLimiter::for) to the web/api groups, and a stricter one to login/OTP routes.</p>
+                        <ul class="items">
+            <li>POST /login</li><li>POST /otp/verify</li><li>GET /search</li><li>POST /password/email</li><li>GET /products</li>          </ul>
+                  </section>
+      <section class="finding" style="--sc: #6b7280">
+      <h2><span class="badge">low</span> 1 model(s) declare neither $fillable nor $guarded</h2>
+      <div class="meta">check: models · estimated fix: 0.25 h</div>
+      <p>Laravel defaults to guarding everything, so mass assignment throws. This usually means the code builds models attribute by attribute, which is safe but worth a look for consistency.</p>
+                        <ul class="items">
+            <li>app/Models/Tag.php</li>          </ul>
+                  </section>
+  
+  <footer>
+    Generated by <b>laravel-rescue-audit</b>. Scores are heuristic: a static scan cannot prove an app is secure, but every item above is worth a look.
+    Fix-time estimates assume a developer already familiar with Laravel.
+  </footer>
+</div>
+</body>
+</html>
